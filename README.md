@@ -1,5 +1,8 @@
+Faculty Front-end for UF Admissions
+===================================
+
 Purpose
-=======
+-------
 
 This repository represents all development of the front-end for a replacement
 of the University of Florida's admissions utilities. Work will be proceeding
