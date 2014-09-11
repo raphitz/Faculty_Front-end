@@ -8,9 +8,9 @@ as part of our group's project for CEN 3031: Introduction to Software Engineerin
 Authors
 -------
 * Andrew McKinlay
-** Gatorlink username: amckinlay
+** GatorLink username: amckinlay
 * Ekaterina Vorobieva
 * John Reed
-** Gatorlink username: johnreedlol
+** GatorLink username: johnreedlol
 * Philip Peterson
-** Gatorlink username: ppeterson
+** GatorLink username: ppeterson
