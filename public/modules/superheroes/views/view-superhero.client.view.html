@@ -1,50 +1,28 @@
 <section data-ng-controller="SuperheroesController" data-ng-init="findOne()">
 
-	<div class="page-header" style="clear: both">
-		<h1 style="float: left"> Name: </h1> 
-		<h1 data-ng-bind="superhero.name" style="float: left"> </h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> GPA: </h1>
-		<h1 data-ng-bind="superhero.gpa" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> FE Score: </h1>
-		<h1 data-ng-bind="superhero.fe" style="float: left"></h1>
-	</div>
-	
-    <div class="page-content" style="clear: both">
-    	<h1 style="float: left"> GMAT Score: </h1>
-		<h1 data-ng-bind="superhero.gmat" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> GRE Score: </h1>
-		<h1 data-ng-bind="superhero.gre" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> IELTS Score: </h1>
-		<h1 data-ng-bind="superhero.ielts" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> MELAB Score: </h1>
-		<h1 data-ng-bind="superhero.melab" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> TOEFL Score: </h1>
-		<h1 data-ng-bind="superhero.toefl" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> TSE Score: </h1>
-		<h1 data-ng-bind="superhero.tse" style="float: left"></h1>
-	</div>
-	
+	<table>
+		<tr>
+			<th>Field</th>
+			<th>Value</th>
+		</tr>
+		<tr ng-repeat="n in
+			[
+				'name',
+				'gpa',
+				'fe',
+				'gmat',
+				'gre',
+				'ielts',
+				'melab',
+				'toefl',
+				'tse'
+			]
+		">
+			<td data-ng-bind='n'></td>
+			<td data-ng-bind='superhero[n]'></td>
+		</tr>
+	</table>
+
 	<div class="pull-right" data-ng-show="authentication.user._id == superhero.user._id">
 		<a class="btn btn-primary" href="/#!/superheroes/{{superhero._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
@@ -53,12 +31,11 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on 
-			<span data-ng-bind="superhero.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="superhero.user.displayName"></span>
-		</em>
-	</small>
+	
+	<div class="text-muted">
+		Posted on 
+		<span data-ng-bind="superhero.created | date:'mediumDate'"></span>
+		by
+		<span data-ng-bind="superhero.user.displayName"></span>
+	</div>
 </section>
