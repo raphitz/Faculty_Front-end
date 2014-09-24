@@ -2,9 +2,9 @@
 
 module.exports = {
 	app: {
-		title: 'MEAN.JS',
-		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-		keywords: 'mongodb, express, angularjs, node.js, mongoose, passport'
+		title: 'Admissions',
+		description: 'Admissions application for graduates',
+		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
@@ -18,8 +18,11 @@ module.exports = {
 			],
 			js: [
 				'public/lib/angular/angular.js',
-				'public/lib/angular-resource/angular-resource.js',
-				'public/lib/angular-animate/angular-animate.js',
+				'public/lib/angular-resource/angular-resource.js', 
+				'public/lib/angular-cookies/angular-cookies.js', 
+				'public/lib/angular-animate/angular-animate.js', 
+				'public/lib/angular-touch/angular-touch.js', 
+				'public/lib/angular-sanitize/angular-sanitize.js', 
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
