@@ -1,0 +1,65 @@
+<section data-ng-controller="SuperheroesController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>Edit Applicant</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="update()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                    </div>
+                    
+                           <label class="control-label" for="name">GPA</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" max = "6" step = ".01" data-ng-model="gpa" id="gpa" class="form-control" placeholder="GPA" required>
+                    </div>
+                    
+                <label class="control-label" for="name">FE</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" data-ng-model="fd" id="fd" class="form-control" placeholder="FE" required>
+                    </div>
+                    
+                <label class="control-label" for="name">GMAT</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" data-ng-model="gmat" id="gmat" class="form-control" placeholder="GMAT" required>
+                    </div>
+                    
+                <label class="control-label" for="name">GRE</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" max = "800" step = "1" data-ng-model="gre" id="gre" class="form-control" placeholder="GRE" required>
+                    </div>
+                    
+                <label class="control-label" for="name">IELTS</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" data-ng-model="ielts" id="ielts" class="form-control" placeholder="IELTS" required>
+                    </div>
+                    
+                <label class="control-label" for="name">MELAB</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" data-ng-model="melab" id="melab" class="form-control" placeholder="MELAB" required>
+                    </div>
+                    
+                <label class="control-label" for="name">TOEFL</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" data-ng-model="toefl" id="toefl" class="form-control" placeholder="TOEFL" required>
+                    </div>
+                    
+                <label class="control-label" for="name">TSE</label>
+                    <div class="controls">
+                        <input type="number" min = "-1" data-ng-model="tse" id="tse" class="form-control" placeholder="TSE" required>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>
