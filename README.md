@@ -10,7 +10,7 @@ as part of our group's project for CEN 3031: Introduction to Software Engineerin
 
 Authors (& GatorLink usernames)
 -------------------------------
-* Andrew McKinlay (amckinlay)
+* Andrew McKinlay (mckinlay.andrew)
 * Ekaterina Vorobieva (evorobieva)
 * John Reed (johnreedlol)
 * Philip Peterson (ppeterson)
