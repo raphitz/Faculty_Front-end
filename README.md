@@ -14,3 +14,16 @@ Authors (& GatorLink usernames)
 * Ekaterina Vorobieva (evorobieva)
 * John Reed (johnreedlol)
 * Philip Peterson (ppeterson)
+
+Running
+-------
+
+1. Ensure you have all the external dependencies.
+2. Ensure your PATH environment variable includes ./node_modules/.bin
+3. `npm install`
+4. `grunt` to serve at http://localhost:3000/
+
+External dependencies
+---------------------
+
+* MongoDB Server
