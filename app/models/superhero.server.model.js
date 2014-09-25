@@ -9,17 +9,6 @@ var mongoose = require('mongoose'),
 /**
  * Superhero Schema
  */
-'use strict';
-
-/**
- * Module dependencies.
- */
-var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
-
-/**
- * Superhero Schema
- */
 var SuperheroSchema = new Schema({
 	name: {
 		type: String,
