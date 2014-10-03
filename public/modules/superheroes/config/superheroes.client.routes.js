@@ -1,29 +1,29 @@
 'use strict';
 
 //Setting up route
-angular.module('superheroes').config(['$stateProvider',
+angular.module('gradApplications').config(['$stateProvider',
 	function($stateProvider) {
-		// Superheroes state routing
+		// GradApplications state routing
 		$stateProvider.
 		state('team', {
 			url: '/team',
-			templateUrl: 'modules/superheroes/views/team.client.view.html'
+			templateUrl: 'modules/gradApplications/views/team.client.view.html'
 		}).
-		state('listSuperheroes', {
-			url: '/superheroes',
-			templateUrl: 'modules/superheroes/views/list-superheroes.client.view.html'
+		state('listGradApplications', {
+			url: '/gradApplications',
+			templateUrl: 'modules/gradApplications/views/list-gradApplications.client.view.html'
 		}).
-		state('createSuperhero', {
-			url: '/superheroes/create',
-			templateUrl: 'modules/superheroes/views/create-superhero.client.view.html'
+		state('createGradApplication', {
+			url: '/gradApplications/create',
+			templateUrl: 'modules/gradApplications/views/create-gradApplication.client.view.html'
 		}).
-		state('viewSuperhero', {
-			url: '/superheroes/:superheroId',
-			templateUrl: 'modules/superheroes/views/view-superhero.client.view.html'
+		state('viewGradApplication', {
+			url: '/gradApplications/:gradApplicationId',
+			templateUrl: 'modules/gradApplications/views/view-gradApplication.client.view.html'
 		}).
-		state('editSuperhero', {
-			url: '/superheroes/:superheroId/edit',
-			templateUrl: 'modules/superheroes/views/edit-superhero.client.view.html'
+		state('editGradApplication', {
+			url: '/gradApplications/:gradApplicationId/edit',
+			templateUrl: 'modules/gradApplications/views/edit-gradApplication.client.view.html'
 		});
 	}
 ]);

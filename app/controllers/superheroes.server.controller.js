@@ -5,100 +5,100 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors'),
-	Superhero = mongoose.model('Superhero'),
+	GradApplication = mongoose.model('GradApplication'),
 	_ = require('lodash');
 
 /**
- * Create a Superhero
+ * Create a GradApplication
  */
 exports.create = function(req, res) {
-	var superhero = new Superhero(req.body);
-	superhero.user = req.user;
+	var gradApplication = new GradApplication(req.body);
+	gradApplication.user = req.user;
 
-	superhero.save(function(err) {
+	gradApplication.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(superhero);
+			res.jsonp(gradApplication);
 		}
 	});
 };
 
 /**
- * Show the current Superhero
+ * Show the current GradApplication
  */
 exports.read = function(req, res) {
-	res.jsonp(req.superhero);
+	res.jsonp(req.gradApplication);
 };
 
 /**
- * Update a Superhero
+ * Update a GradApplication
  */
 exports.update = function(req, res) {
-	var superhero = req.superhero ;
+	var gradApplication = req.gradApplication ;
 
-	superhero = _.extend(superhero , req.body);
+	gradApplication = _.extend(gradApplication , req.body);
 
-	superhero.save(function(err) {
+	gradApplication.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(superhero);
+			res.jsonp(gradApplication);
 		}
 	});
 };
 
 /**
- * Delete an Superhero
+ * Delete an GradApplication
  */
 exports.delete = function(req, res) {
-	var superhero = req.superhero ;
+	var gradApplication = req.gradApplication ;
 
-	superhero.remove(function(err) {
+	gradApplication.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(superhero);
+			res.jsonp(gradApplication);
 		}
 	});
 };
 
 /**
- * List of Superheroes
+ * List of GradApplications
  */
-exports.list = function(req, res) { Superhero.find().sort('-created').populate('user', 'displayName').exec(function(err, superheroes) {
+exports.list = function(req, res) { GradApplication.find().sort('-created').populate('user', 'displayName').exec(function(err, gradApplications) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(superheroes);
+			res.jsonp(gradApplications);
 		}
 	});
 };
 
 /**
- * Superhero middleware
+ * GradApplication middleware
  */
-exports.superheroByID = function(req, res, next, id) { Superhero.findById(id).populate('user', 'displayName').exec(function(err, superhero) {
+exports.gradApplicationByID = function(req, res, next, id) { GradApplication.findById(id).populate('user', 'displayName').exec(function(err, gradApplication) {
 		if (err) return next(err);
-		if (! superhero) return next(new Error('Failed to load Superhero ' + id));
-		req.superhero = superhero ;
+		if (! gradApplication) return next(new Error('Failed to load GradApplication ' + id));
+		req.gradApplication = gradApplication ;
 		next();
 	});
 };
 
 /**
- * Superhero authorization middleware
+ * GradApplication authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.superhero.user.id !== req.user.id) {
+	if (req.gradApplication.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();

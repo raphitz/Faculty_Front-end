@@ -1,14 +1,14 @@
 'use strict';
 
-// Superheroes controller
-angular.module('superheroes').controller('SuperheroesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Superheroes',
-	function($scope, $stateParams, $location, Authentication, Superheroes ) {
+// GradApplications controller
+angular.module('gradApplications').controller('GradApplicationsController', ['$scope', '$stateParams', '$location', 'Authentication', 'GradApplications',
+	function($scope, $stateParams, $location, Authentication, GradApplications ) {
 		$scope.authentication = Authentication;
 
-		// Create new Superhero
+		// Create new GradApplication
 		$scope.create = function() {
-			// Create new Superhero object
-			var superhero = new Superheroes ({
+			// Create new GradApplication object
+			var gradApplication = new GradApplications ({
 				name: this.name,
 				gpa: this.gpa,
 				fe: this.fe,
@@ -21,8 +21,8 @@ angular.module('superheroes').controller('SuperheroesController', ['$scope', '$s
 			});
 
 			// Redirect after save
-			superhero.$save(function(response) {
-				$location.path('superheroes/' + response._id);
+			gradApplication.$save(function(response) {
+				$location.path('gradApplications/' + response._id);
 
 				// Clear form fields
 				$scope.name = '';
@@ -31,49 +31,49 @@ angular.module('superheroes').controller('SuperheroesController', ['$scope', '$s
 			});
 		};
 
-		// Remove existing Superhero
-		$scope.remove = function( superhero ) {
-			if ( superhero ) { superhero.$remove();
+		// Remove existing GradApplication
+		$scope.remove = function( gradApplication ) {
+			if ( gradApplication ) { gradApplication.$remove();
 
-				for (var i in $scope.superheroes ) {
-					if ($scope.superheroes [i] === superhero ) {
-						$scope.superheroes.splice(i, 1);
+				for (var i in $scope.gradApplications ) {
+					if ($scope.gradApplications [i] === gradApplication ) {
+						$scope.gradApplications.splice(i, 1);
 					}
 				}
 			} else {
-				$scope.superhero.$remove(function() {
-					$location.path('superheroes');
+				$scope.gradApplication.$remove(function() {
+					$location.path('gradApplications');
 				});
 			}
 		};
 
-		// Update existing Superhero
+		// Update existing GradApplication
 		$scope.update = function() {
-			var superhero = $scope.superhero ;
+			var gradApplication = $scope.gradApplication ;
 
-			superhero.$update(function() {
-				$location.path('superheroes/' + superhero._id);
+			gradApplication.$update(function() {
+				$location.path('gradApplications/' + gradApplication._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
 
-		// Find a list of Superheroes
+		// Find a list of GradApplications
 		$scope.find = function() {
-			$scope.superheroes = Superheroes.query();
+			$scope.gradApplications = GradApplications.query();
 		};
 
-		// Find existing Superhero
+		// Find existing GradApplication
 		$scope.findOne = function() {
-			$scope.superhero = Superheroes.get({ 
-				superheroId: $stateParams.superheroId
+			$scope.gradApplication = GradApplications.get({ 
+				gradApplicationId: $stateParams.gradApplicationId
 			});
 		};
 
-				// Summarize an existing Superhero
+				// Summarize an existing GradApplication
 		//summarize = function(gpa, gre) {
-		//	$scope.superhero = Superheroes.get({ 
-		//		superheroId: $stateParams.superheroId
+		//	$scope.gradApplication = GradApplications.get({ 
+		//		gradApplicationId: $stateParams.gradApplicationId
 		//	});
 		//};
 

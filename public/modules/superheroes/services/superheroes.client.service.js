@@ -1,9 +1,9 @@
 'use strict';
 
-//Superheroes service used to communicate Superheroes REST endpoints
-angular.module('superheroes').factory('Superheroes', ['$resource',
+//GradApplications service used to communicate GradApplications REST endpoints
+angular.module('gradApplications').factory('GradApplications', ['$resource',
 	function($resource) {
-		return $resource('superheroes/:superheroId', { superheroId: '@_id'
+		return $resource('gradApplications/:gradApplicationId', { gradApplicationId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'

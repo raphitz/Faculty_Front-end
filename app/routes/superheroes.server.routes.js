@@ -2,18 +2,18 @@
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users');
-	var superheroes = require('../../app/controllers/superheroes');
+	var gradApplications = require('../../app/controllers/gradApplications');
 
-	// Superheroes Routes
-	app.route('/superheroes')
-		.get(superheroes.list)
-		.post(users.requiresLogin, superheroes.create);
+	// GradApplications Routes
+	app.route('/gradApplications')
+		.get(gradApplications.list)
+		.post(users.requiresLogin, gradApplications.create);
 
-	app.route('/superheroes/:superheroId')
-		.get(superheroes.read)
-		.put(users.requiresLogin, superheroes.hasAuthorization, superheroes.update)
-		.delete(users.requiresLogin, superheroes.hasAuthorization, superheroes.delete);
+	app.route('/gradApplications/:gradApplicationId')
+		.get(gradApplications.read)
+		.put(users.requiresLogin, gradApplications.hasAuthorization, gradApplications.update)
+		.delete(users.requiresLogin, gradApplications.hasAuthorization, gradApplications.delete);
 
-	// Finish by binding the Superhero middleware
-	app.param('superheroId', superheroes.superheroByID);
+	// Finish by binding the GradApplication middleware
+	app.param('gradApplicationId', gradApplications.gradApplicationByID);
 };

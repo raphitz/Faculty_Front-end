@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * Superhero Schema
+ * GradApplication Schema
  */
-var SuperheroSchema = new Schema({
+var GradApplicationSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
@@ -58,4 +58,4 @@ var SuperheroSchema = new Schema({
 	}
 });
 
-mongoose.model('Superhero', SuperheroSchema);
+mongoose.model('GradApplication', GradApplicationSchema);
