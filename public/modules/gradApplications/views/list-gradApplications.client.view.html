@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>SAT Score</th>
+                <th>Unweighted GPA</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -40,12 +40,11 @@
                 -->
             </td>
 
-            <td>
-                ?
+            <td data-ng-bind="gradApplication.gpa">
             </td>
 
             <td>
-                Download PDF
+                <a data-ng-href="javascript:;" data-ng-click="downloadPDF()">Download PDF</a>
             </td>
 
         </tr>

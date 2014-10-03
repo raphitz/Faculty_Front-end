@@ -5,6 +5,11 @@ angular.module('gradApplications').controller('GradApplicationsController', ['$s
 	function($scope, $stateParams, $location, Authentication, GradApplications ) {
 		$scope.authentication = Authentication;
 
+		// Download a PDF summarizing the application
+		$scope.downloadPDF = function() {
+			alert('hello');
+		};
+
 		// Create new GradApplication
 		$scope.create = function() {
 			// Create new GradApplication object
