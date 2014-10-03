@@ -1,4 +1,4 @@
-<section data-ng-controller="SuperheroesController" data-ng-init="findOne()">
+<section data-ng-controller="GradApplicationsController" data-ng-init="findOne()">
 
 	<table>
 		<tr>
@@ -19,57 +19,57 @@
 			]
 		">
 			<td data-ng-bind='n'></td>
-			<td data-ng-bind='superhero[n]'></td>
+			<td data-ng-bind='gradApplication[n]'></td>
 		</tr>
 	</table>
 
 	<div class="page-header" style="clear: both">
 		<h1 style="float: left"> Name: </h1> 
-		<h1 data-ng-bind="superhero.name" style="float: left"> </h1>
+		<h1 data-ng-bind="gradApplication.name" style="float: left"> </h1>
 	</div>
 	
 	<div class="page-content" style="clear: both">
 		<h1 style="float: left"> GPA: </h1>
-		<h1 data-ng-bind="superhero.gpa" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.gpa" style="float: left"></h1>
 	</div>
 	
 	<div class="page-content" style="clear: both">
 		<h1 style="float: left"> FE Score: </h1>
-		<h1 data-ng-bind="superhero.fe" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.fe" style="float: left"></h1>
 	</div>
 	
     <div class="page-content" style="clear: both">
     	<h1 style="float: left"> GMAT Score: </h1>
-		<h1 data-ng-bind="superhero.gmat" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.gmat" style="float: left"></h1>
 	</div>
 	
 	<div class="page-content" style="clear: both">
 		<h1 style="float: left"> GRE Score: </h1>
-		<h1 data-ng-bind="superhero.gre" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.gre" style="float: left"></h1>
 	</div>
 	
 	<div class="page-content" style="clear: both">
 		<h1 style="float: left"> IELTS Score: </h1>
-		<h1 data-ng-bind="superhero.ielts" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.ielts" style="float: left"></h1>
 	</div>
 	
 	<div class="page-content" style="clear: both">
 		<h1 style="float: left"> MELAB Score: </h1>
-		<h1 data-ng-bind="superhero.melab" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.melab" style="float: left"></h1>
 	</div>
 	
 	<div class="page-content" style="clear: both">
 		<h1 style="float: left"> TOEFL Score: </h1>
-		<h1 data-ng-bind="superhero.toefl" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.toefl" style="float: left"></h1>
 	</div>
 	
 	<div class="page-content" style="clear: both">
 		<h1 style="float: left"> TSE Score: </h1>
-		<h1 data-ng-bind="superhero.tse" style="float: left"></h1>
+		<h1 data-ng-bind="gradApplication.tse" style="float: left"></h1>
 	</div>
 	
-	<div class="pull-right" data-ng-show="authentication.user._id == superhero.user._id">
-		<a class="btn btn-primary" href="/#!/superheroes/{{superhero._id}}/edit">
+	<div class="pull-right" data-ng-show="authentication.user._id == gradApplication.user._id">
+		<a class="btn btn-primary" href="/#!/gradApplications/{{gradApplication._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
 		<a class="btn btn-primary" data-ng-click="remove();">
@@ -79,8 +79,8 @@
 	
 	<div class="text-muted">
 		Posted on 
-		<span data-ng-bind="superhero.created | date:'mediumDate'"></span>
+		<span data-ng-bind="gradApplication.created | date:'mediumDate'"></span>
 		by
-		<span data-ng-bind="superhero.user.displayName"></span>
+		<span data-ng-bind="gradApplication.user.displayName"></span>
 	</div>
 </section>

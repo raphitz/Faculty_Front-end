@@ -1,0 +1,48 @@
+<section data-ng-controller="GradApplicationsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>GradApplications</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="gradApplication in gradApplications" data-ng-href="#!/gradApplications/{{gradApplication._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="gradApplication.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="gradApplication.user.displayName"></span>
+			</small>
+			
+			<h2> <u> Applicant: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.name" ></h3>
+			
+			<!--
+			<h2> <u> GPA: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.gpa"></h3>
+			
+			<h2> <u> FE: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.fe"></h3>
+			
+			<h2> <u> GMAT: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.gmat"></h3>
+	
+			<h2> <u> GRE: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.gre"></h3>
+			
+			<h2> <u> IELTS: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.ielts"></h3>
+			
+			<h2> <u> MELAB: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.melab"></h3>
+			
+			<h2> <u> TOEFL: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.toefl"></h3>
+			
+			<h2> <u> TSE: </u> </h2>
+			<h3 class="list-group-item-heading" data-ng-bind="gradApplication.tse"></h3>
+			-->
+
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!gradApplications.$resolved || gradApplications.length">
+    	No GradApplications yet, why don't you <a href="/#!/gradApplications/create">create one</a>?
+    </div>
+</section>
