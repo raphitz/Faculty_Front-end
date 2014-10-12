@@ -1,5 +1,7 @@
 'use strict';
 
+// vim: ts=3:noet:sw=3:ai:si
+
 /**
  * Module dependencies.
  */

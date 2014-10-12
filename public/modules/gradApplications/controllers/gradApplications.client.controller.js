@@ -5,6 +5,8 @@ angular.module('gradApplications').controller('GradApplicationsController', ['$s
 	function($scope, $stateParams, $location, Authentication, GradApplications ) {
 		$scope.authentication = Authentication;
 
+      $scope.countries = ApplicationConfiguration.countries;
+
 		// Download a PDF summarizing the application
 		$scope.downloadPDF = function() {
 			alert('hello');

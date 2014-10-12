@@ -7,9 +7,15 @@
             <fieldset>
                 <div class="form-group">
                 
-                  <label class="control-label" for="name">Name</label>
+                <label class="control-label" for="name">Name</label>
                     <div class="controls">
                         <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                    </div>
+
+                <label class="control-label" for="nation_of_citizenship">Nation of citizenship</label>
+                    <div class="controls">
+                        <select data-ng-model="nation_of_citizenship" data-ng-options="pair[1] for pair in countries" id="nation_of_citizenship" class="form-control" required>
+                        </select>
                     </div>
                     
                 <label class="control-label" for="name">GPA</label>
