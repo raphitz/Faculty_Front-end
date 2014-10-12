@@ -8,21 +8,23 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var addressSchema = new Schema({
-        street: String,
-        city: String,
-        state: String,
-        country: String,
-        zip: String
-});
-
-var phoneSchema = new Schema({
-    number: String, // Phone numbers can be weird. Store as string, not number.
+var _phoneBase = {
+    number: {
+        type: String
+    }, // Phone numbers can be weird. Store as string, not number.
     domesticity: {
         type: String,
         enum: [null, 'US', 'Intl']
     }
+};
+
+var phoneSchema = new Schema(_phoneBase);
+
+var phonePlusExtensionSchema = new Schema(_phoneBase);
+phonePlusExtensionSchema.add({
+    extension: String
 });
+
 
 var countries = [
     { code: "US", full: "UNITED STATES" }
@@ -302,6 +304,18 @@ for (var i = 0; i < countries.length; i++) {
     countryCodes.push(countries[i].code);
 }
 
+var addressSchema = new Schema({
+        street: String,
+        city: String,
+        state: String,
+        country: {
+            type: String,
+            enum: countryCodes
+        },
+        zip: String
+});
+
+
 /**
  * GradApplication Schema
  */
@@ -397,78 +411,42 @@ var GradApplicationSchema = new Schema({
         email: String,
         phone: {
             personal: phoneSchema,
-            work: {
-                number: {
-                    type: Number,
-                },
-                us: {
-                    type: Boolean,
-                    default: false
-                },
-            },
-            cell: {
-                number: {
-                    type: Number
-                },
-                us: {
-                    type: Boolean,
-                    default: false
-                },
-            }
+            cell: phoneSchema,
+            work: phonePlusExtensionSchema
         },
         address: {
             permanent: addressSchema,
-            current: addressSchema,
-            valid_until: Date
+            current: addressSchema, // TODO three lines?
+            current_valid_until: Date
         },
         emergency_contact: {
             name: {
                 first: String,
-                middle: String,
                 last: String,
-                suffix: String,
-                other_names: [String],
-                relationship: String
             },
-            address: addressSchema,
-            phone: {
-                personal: {
-                    number: Number,
-                    us: {
-                        type: Boolean,
-                        default: false
-                    },
-                    intl: {
-                        type: Boolean,
-                        default: false
-                    },
-                },
-                work: {
-                    number: Number,
-                    us: {
-                        type: Boolean,
-                        default: false
-                    },
-                    intl: {
-                        type: Boolean,
-                        default: false
-                    }
-                },
-                cell: {
-                    number: Number,
-                    us: {
-                        type: Boolean,
-                        default: false
-                    },
-                    intl: {
-                        type: Boolean,
-                        default: false
-                    }
+            relationship: {
+                type: String,
+                enum: [
+                    'MO', // Mother
+                    'FA', // Father
+                    'WI', // Wife
+                    'HU', // Husband
+                    'LG', // Legal Guardian
+                    'OT' // Other
                 }
+            },
+            address: addressSchema, // TODO three lines?
+            phone: {
+                personal: phoneSchema,
+                cell: phoneSchema,
+                cell: phoneSchema,
             }
         },
-        veteran_status: {
-            active_veteran_: Boolean,
+        military_status: {
+            member_or_vet: {
+                type: String,
+                enum: ['yes_active', 'yes_veteran', 'no']
+            },
             post_sep11: Boolean,
             eligible_va_benefits: Boolean
         },
