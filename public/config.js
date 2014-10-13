@@ -296,7 +296,7 @@ var ApplicationConfiguration = (function() {
 
    var code, i, l = config.countries.length;
    for (i = 0; i < l; i++) {
-      config.countryCodes.push(config.countries[0]);
+      config.countryCodes.push(config.countries[i][0]);
    }
 
    return config;

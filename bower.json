@@ -14,6 +14,7 @@
     "angular-bootstrap": "~0.11.2",
     "angular-ui-utils": "~0.1.1",
     "angular-ui-router": "~0.2.10",
-    "nsPopover": "~0.5.8"
+    "nsPopover": "~0.5.8",
+    "pdfmake": "bpampuch/pdfmake#>=0.1.10"
   }
 }

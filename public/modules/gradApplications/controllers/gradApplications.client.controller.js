@@ -16,7 +16,7 @@
    }
 
    function getprop(obj, path) {
-       if (path == '') {
+       if (path === '') {
           return obj;
        }
        if (typeof obj !== 'object') {
@@ -30,6 +30,105 @@
    }
 
 
+   function generatePdfDoc(gradApplication) {
+      var dd = {
+         content: [
+                  { text: 'Graduate Application for ...', style: 'header' },
+                  '',
+                  { text: 'Personal Info', style: 'subheader' },
+                  {
+                        style: 'tableExample',
+                        table: {
+                              body: [
+                                    ['First Name', 'Middle Name', 'Last Name'],
+                                    ['John', 'C', 'Adams']
+                              ]
+                        }
+                  },
+                  {
+                        style: 'tableExample',
+                        table: {
+                              body: [
+                                    ['UFID', '22291234'],
+                                    ['Country of citizenship', 'Antarctica']
+                              ]
+                        }
+                  },
+                  { text: 'Education and activities', style: 'subheader' },
+                  { text: 'Test scores', style: 'subsubheader' },
+                  {
+                        style: 'tableExample',
+                        table: {
+                              body: [
+                                    ['Column 1', 'Column 2', 'Column 3'],
+                                    [
+                                          {
+                                                stack: [
+                                                      'Let\'s try an unordered list',
+                                                      {
+                                                            ul: [
+                                                                  'item 1',
+                                                                  'item 2'
+                                                            ]
+                                                      }
+                                                ]
+                                          },
+                                          [
+                                             'or a nested table',
+                                             {
+                                                table: {
+                                                   body: [
+                                                      [ 'Col1', 'Col2', 'Col3'],
+                                                      [ '1', '2', '3'],
+                                                      [ '1', '2', '3']
+                                                   ]
+                                                },
+                                             }
+                                          ],
+                                          { text: [
+                                                'Inlines can be ',
+                                                { text: 'styled\n', italics: true },
+                                                { text: 'easily as everywhere else', fontSize: 10 } ]
+                                          }
+                                    ]
+                              ]
+                        }
+                  }
+         ],
+         styles: {
+            header: {
+               fontSize: 18,
+               bold: true,
+               margin: [0, 0, 0, 10]
+            },
+            subheader: {
+               fontSize: 16,
+               bold: true,
+               margin: [0, 10, 0, 5]
+            },
+            subsubheader: {
+               fontSize: 13,
+               bold: true,
+               margin: [0, 10, 0, 5]
+            },
+            tableExample: {
+               margin: [0, 5, 0, 15]
+            },
+            tableHeader: {
+               bold: true,
+               fontSize: 13,
+               color: 'black'
+            }
+         },
+         defaultStyle: {
+            // alignment: 'justify'
+         }
+         
+      };
+      return dd;
+   }
+
+
    // GradApplications controller
    angular.module('gradApplications').controller('GradApplicationsController', ['$scope', '$stateParams', '$location', 'Authentication', 'GradApplications',
       function($scope, $stateParams, $location, Authentication, GradApplications ) {
@@ -39,7 +138,8 @@
 
          // Download a PDF summarizing the application
          $scope.downloadPDF = function() {
-            alert('hello');
+            var doc = generatePdfDoc(this);
+            pdfMake.createPdf(doc).open();
          };
 
          // Create new GradApplication
@@ -48,8 +148,16 @@
 
             var PROPS_TO_COPY = [
                'name',
+               'personal_info.nation_of_citizenship',
                'personal_info.UFID',
                'education_and_activities.self_reported_GPA',
+               'education_and_activities.test_scores.FE',
+               'education_and_activities.test_scores.GMAT',
+               'education_and_activities.test_scores.GRE',
+               'education_and_activities.test_scores.IELTS',
+               'education_and_activities.test_scores.MELAB',
+               'education_and_activities.test_scores.TOEFL',
+               'education_and_activities.test_scores.TSE',
             ];
             
             var obj = {};
@@ -61,13 +169,11 @@
                setprop(obj, prop, getprop(this,prop));
             }
 
-            console.log(obj);
-
             var gradApplication = new GradApplications (obj);
 
             // Redirect after save
             gradApplication.$save(function(response) {
-               $location.path('gradApplications/' + response._id);
+               $location.path('gradApplications');
 
                // Clear form fields
                $scope.name = '';

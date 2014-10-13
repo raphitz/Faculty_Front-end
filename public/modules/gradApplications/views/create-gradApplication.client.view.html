@@ -14,7 +14,8 @@
 
                 <label class="control-label" for="nation_of_citizenship">Nation of citizenship</label>
                     <div class="controls">
-                        <select data-ng-model="personal_info.nation_of_citizenship" data-ng-options="pair[1] for pair in countries" id="nation_of_citizenship" class="form-control" required>
+                        <select data-ng-model="personal_info.nation_of_citizenship" data-ng-options="pair[0] as pair[1] for pair in countries" id="nation_of_citizenship" class="form-control" required>
+                           <option value=''>-- Select country --</option>
                         </select>
                     </div>
 
@@ -30,37 +31,37 @@
                     
                 <label class="control-label" for="name">FE</label>
                     <div class="controls">
-                        <input type="number" min = "-1" data-ng-model="fe" id="fe" class="form-control" placeholder="FE" required>
+                        <input type="number" min = "-1" data-ng-model="education_and_activities.test_scores.FE" id="fe" class="form-control" placeholder="FE" required>
                     </div>
                     
                 <label class="control-label" for="name">GMAT</label>
                     <div class="controls">
-                        <input type="number" min = "-1" data-ng-model="gmat" id="gmat" class="form-control" placeholder="GMAT" required>
+                        <input type="number" min = "-1" data-ng-model="education_and_activities.test_scores.GMAT" id="gmat" class="form-control" placeholder="GMAT" required>
                     </div>
                     
                 <label class="control-label" for="name">GRE</label>
                     <div class="controls">
-                        <input type="number" min = "-1" max = "800" step = "1" data-ng-model="GRE" id="gre" class="form-control" placeholder="GRE" required>
+                        <input type="number" min = "-1" max = "800" step = "1" data-ng-model="education_and_activities.test_scores.GRE" id="gre" class="form-control" placeholder="GRE" required>
                     </div>
                     
                 <label class="control-label" for="name">IELTS</label>
                     <div class="controls">
-                        <input type="number" min = "-1" data-ng-model="ielts" id="ielts" class="form-control" placeholder="IELTS" required>
+                        <input type="number" min = "-1" data-ng-model="education_and_activities.test_scores.IELTS" id="ielts" class="form-control" placeholder="IELTS" required>
                     </div>
                     
                 <label class="control-label" for="name">MELAB</label>
                     <div class="controls">
-                        <input type="number" min = "-1" data-ng-model="melab" id="melab" class="form-control" placeholder="MELAB" required>
+                        <input type="number" min = "-1" data-ng-model="education_and_activities.test_scores.MELAB" id="melab" class="form-control" placeholder="MELAB" required>
                     </div>
                     
                 <label class="control-label" for="name">TOEFL</label>
                     <div class="controls">
-                        <input type="number" min = "-1" data-ng-model="toefl" id="toefl" class="form-control" placeholder="TOEFL" required>
+                        <input type="number" min = "-1" data-ng-model="education_and_activities.test_scores.TOEFL" id="toefl" class="form-control" placeholder="TOEFL" required>
                     </div>
                     
                 <label class="control-label" for="name">TSE</label>
                     <div class="controls">
-                        <input type="number" min = "-1" data-ng-model="tse" id="tse" class="form-control" placeholder="TSE" required>
+                        <input type="number" min = "-1" data-ng-model="education_and_activities.test_scores.TSE" id="tse" class="form-control" placeholder="TSE" required>
                     </div>
                     
                 </div>
