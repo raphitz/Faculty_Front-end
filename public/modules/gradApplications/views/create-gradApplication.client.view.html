@@ -8,8 +8,10 @@
                 <div class="form-group">
                 
                 <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                    <div class="controls form-inline">
+                        <input type="text" data-ng-model="personal_info.name.first" id="fname" class="form-control" placeholder="First" required>
+                        <input type="text" data-ng-model="personal_info.name.middle" id="name" class="form-control" placeholder="Middle" required>
+                        <input type="text" data-ng-model="personal_info.name.last" id="name" class="form-control" placeholder="Last" required>
                     </div>
 
                 <label class="control-label" for="nation_of_citizenship">Nation of citizenship</label>

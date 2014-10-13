@@ -12,7 +12,10 @@
         </thead>
         <tr data-ng-repeat="gradApplication in gradApplications" data-ng-href="#!/gradApplications/{{gradApplication._id}}">
             <td>
-                <h3 class="list-group-item-heading" data-ng-bind="gradApplication.name" ></h3> 
+                <h3 class="list-group-item-heading">
+                   <span data-ng-bind="gradApplication.personal_info.name.first"></span>
+                   <span data-ng-bind="gradApplication.personal_info.name.last"></span>
+                </h3> 
                 <!--
                 <h2> <u> GPA: </u> </h2>
                 <h3 class="list-group-item-heading" data-ng-bind="gradApplication.gpa"></h3>

@@ -48,12 +48,6 @@ var GradApplicationSchema = new Schema({
     /**
      * Old application
      */
-    name: { // TODO remove in favor of personal_info.name
-        type: String,
-        default: null,
-        required: 'Please fill in the applicant\'s name',
-        trim: true
-    },
     created: {
         type: Date,
         default: Date.now
@@ -68,14 +62,15 @@ var GradApplicationSchema = new Schema({
      */
 
     personal_info: {
-        name: [{
+        name: {
             first: String,
             middle: String,
             last: String,
             suffix: {
                 type: String,
-                default: null,
+                default: '',
                 enum: [
+                    '',
                     'Jr.',
                     'Sr.',
                     'II',
@@ -85,7 +80,7 @@ var GradApplicationSchema = new Schema({
                 ]
             },
             other_names: String
-        }],
+        },
         does_not_have_SSN: Boolean,
         SSN: {
             // TODO Do we really need to store this?

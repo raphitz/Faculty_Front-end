@@ -58,11 +58,12 @@
          ['TOEFL', p('education_and_activities.test_scores.TOEFL')],
          ['TSE',   p('education_and_activities.test_scores.TSE')],
       ];
-      console.log(testScores);
+
+      var name = p('personal_info.name.first') + ' ' + p('personal_info.name.last');
 
       var dd = {
          content: [
-            { text: 'Graduate Application for ' + p('name'), style: 'header' },
+            { text: 'Graduate Application for ' + name, style: 'header' },
             '',
             { text: 'Personal Info', style: 'subheader' },
             {
@@ -70,7 +71,7 @@
                table: {
                   body: [
                      ['First Name', 'Middle Name', 'Last Name'],
-                     ['John', 'C', 'Adams']
+                     [p('personal_info.name.first'), p('personal_info.name.middle'), p('personal_info.name.last')]
                   ]
                }
             },
@@ -147,7 +148,9 @@
             // Create new GradApplication object
 
             var PROPS_TO_COPY = [
-               'name',
+               'personal_info.name.first',
+               'personal_info.name.middle',
+               'personal_info.name.last',
                'personal_info.nation_of_citizenship',
                'personal_info.UFID',
                'education_and_activities.self_reported_GPA',
