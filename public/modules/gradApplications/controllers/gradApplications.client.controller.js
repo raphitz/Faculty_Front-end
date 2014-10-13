@@ -5,95 +5,95 @@
    // If you pass this function (foo, 'bar.baz', 'quux') it will execute foo.bar.baz = 'quux';
    // Creates intermediary objects along the way, too.
    function setprop(obj, path, value) {
-      var i;
       var parts = path.split('.');
-      for (i = 0; i < parts.length-1; i++) {
-         if (!(parts[i] in obj)) {
-            obj = obj[parts[i]] = {};
-         }
+      if (parts.length === 1) {
+         obj[parts[0]] = value;
+         return;
       }
-      obj[parts[parts.length-1]] = value;
+      if (!(parts[0] in obj)) {
+         obj[parts[0]] = {};
+      }
+      var x = parts.shift();
+      setprop(obj[x], parts.join('.'), value);
    }
 
-   function getprop(obj, path) {
+   function getprop(obj, path, _default) {
        if (path === '') {
           return obj;
        }
        if (typeof obj !== 'object') {
-         return undefined;
+         return _default;
        }
        var parts = path.split('.');
        var firstaccessor = parts[0];
        parts.shift();
        obj = obj[firstaccessor];
-       return getprop(obj, parts.join('.'));
+       return getprop(obj, parts.join('.'), _default);
    }
 
 
-   function generatePdfDoc(gradApplication) {
+   function generatePdfDoc(app) {
+      function p(prop) {
+         var value = getprop(app, prop, '');
+         if (value === undefined) {
+            return '';
+         }
+         return ''+value;
+      }
+
+      function country(prop) {
+         var code = getprop(app, prop, undefined);
+         if (code === '') {
+            return '';
+         }
+         return ApplicationConfiguration.countriesByCode[code];
+      }
+
+      var testScores = [
+         ['FE',    p('education_and_activities.test_scores.FE')],
+         ['GMAT',  p('education_and_activities.test_scores.GMAT')],
+         ['GRE',   p('education_and_activities.test_scores.GRE')],
+         ['IELTS', p('education_and_activities.test_scores.IELTS')],
+         ['MELAB', p('education_and_activities.test_scores.MELAB')],
+         ['TOEFL', p('education_and_activities.test_scores.TOEFL')],
+         ['TSE',   p('education_and_activities.test_scores.TSE')],
+      ];
+      console.log(testScores);
+
       var dd = {
          content: [
-                  { text: 'Graduate Application for ...', style: 'header' },
-                  '',
-                  { text: 'Personal Info', style: 'subheader' },
-                  {
-                        style: 'tableExample',
-                        table: {
-                              body: [
-                                    ['First Name', 'Middle Name', 'Last Name'],
-                                    ['John', 'C', 'Adams']
-                              ]
-                        }
-                  },
-                  {
-                        style: 'tableExample',
-                        table: {
-                              body: [
-                                    ['UFID', '22291234'],
-                                    ['Country of citizenship', 'Antarctica']
-                              ]
-                        }
-                  },
-                  { text: 'Education and activities', style: 'subheader' },
-                  { text: 'Test scores', style: 'subsubheader' },
-                  {
-                        style: 'tableExample',
-                        table: {
-                              body: [
-                                    ['Column 1', 'Column 2', 'Column 3'],
-                                    [
-                                          {
-                                                stack: [
-                                                      'Let\'s try an unordered list',
-                                                      {
-                                                            ul: [
-                                                                  'item 1',
-                                                                  'item 2'
-                                                            ]
-                                                      }
-                                                ]
-                                          },
-                                          [
-                                             'or a nested table',
-                                             {
-                                                table: {
-                                                   body: [
-                                                      [ 'Col1', 'Col2', 'Col3'],
-                                                      [ '1', '2', '3'],
-                                                      [ '1', '2', '3']
-                                                   ]
-                                                },
-                                             }
-                                          ],
-                                          { text: [
-                                                'Inlines can be ',
-                                                { text: 'styled\n', italics: true },
-                                                { text: 'easily as everywhere else', fontSize: 10 } ]
-                                          }
-                                    ]
-                              ]
-                        }
-                  }
+            { text: 'Graduate Application for ' + p('name'), style: 'header' },
+            '',
+            { text: 'Personal Info', style: 'subheader' },
+            {
+               style: 'tableExample',
+               table: {
+                  body: [
+                     ['First Name', 'Middle Name', 'Last Name'],
+                     ['John', 'C', 'Adams']
+                  ]
+               }
+            },
+            {
+               style: 'tableExample',
+               table: {
+                  body: [
+                     ['UFID', p('personal_info.UFID')],
+                     [
+                        'Nation of citizenship',
+                        country('personal_info.nation_of_citizenship')
+                     ]
+                  ]
+               }
+            },
+            { text: 'Education and activities', style: 'subheader' },
+            { text: 'Test scores', style: 'subsubheader' },
+            {
+               style: 'tableExample',
+               table: {
+                     body: testScores
+               }
+            }
          ],
          styles: {
             header: {
@@ -138,7 +138,7 @@
 
          // Download a PDF summarizing the application
          $scope.downloadPDF = function() {
-            var doc = generatePdfDoc(this);
+            var doc = generatePdfDoc(this.gradApplication);
             pdfMake.createPdf(doc).open();
          };
 

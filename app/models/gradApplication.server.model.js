@@ -259,7 +259,7 @@ var GradApplicationSchema = new Schema({
     //     statement_of_purpose: String
     // },
     education_and_activities: {
-        undergraduate: [{
+        undergraduate: {
             major: {
                 type: String,
                 default: ''
@@ -268,12 +268,12 @@ var GradApplicationSchema = new Schema({
                 type: String,
                 default: ''
             }
-        }],
+        },
         colleges: [String], // TODO database of universities
         /* opening another link*/
         self_reported_GPA: Number,
         // TODO verify all below fields match actual app
-        test_scores: [{
+        test_scores: {
 
             // Graduate Record Examinations
             GRE: Number,
@@ -361,8 +361,8 @@ var GradApplicationSchema = new Schema({
             //},
 
             uf_lang_institute_program: Boolean
-        }],
-        activities: [{
+        },
+        activities: {
             activity: {
                 type: String,
                 default: ''
@@ -374,15 +374,15 @@ var GradApplicationSchema = new Schema({
             day1: String,
             to: String,
             day2: String
-        }],
-        resume: [{
+        },
+        resume: {
             name: String,
             file: Buffer
-        }],
-        transcript: [{
+        },
+        transcript: {
             name: String,
             file: Buffer
-        }]
+        }
     },
     // residency_affadivit: {
     //     florida_residence_categories: {

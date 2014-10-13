@@ -293,11 +293,15 @@ var ApplicationConfiguration = (function() {
 	};
 
    config.countryCodes = [];
+   config.countriesByCode = [];
 
-   var code, i, l = config.countries.length;
+   var country, i, l = config.countries.length;
    for (i = 0; i < l; i++) {
-      config.countryCodes.push(config.countries[i][0]);
+      country = config.countries[i];
+      config.countryCodes.push(country[0]);
+      config.countriesByCode[country[0]] = country[1];
    }
+
 
    return config;
 })();
