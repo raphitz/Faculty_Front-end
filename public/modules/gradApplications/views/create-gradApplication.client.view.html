@@ -14,18 +14,23 @@
 
                 <label class="control-label" for="nation_of_citizenship">Nation of citizenship</label>
                     <div class="controls">
-                        <select data-ng-model="nation_of_citizenship" data-ng-options="pair[1] for pair in countries" id="nation_of_citizenship" class="form-control" required>
+                        <select data-ng-model="personal_info.nation_of_citizenship" data-ng-options="pair[1] for pair in countries" id="nation_of_citizenship" class="form-control" required>
                         </select>
                     </div>
-                    
-                <label class="control-label" for="name">GPA</label>
+
+                <label class="control-label" for="ufid">UFID (if you have one)</label>
                     <div class="controls">
-                        <input type="number" min = "-1" max = "6" step = ".01" data-ng-model="gpa" id="gpa" class="form-control" placeholder="GPA" required>
+                        <input type="text" data-ng-model="personal_info.UFID" id="ufid" class="form-control" placeholder="UFID">
+                    </div>
+                    
+                <label class="control-label" for="gpa">Self-reported unweighted GPA</label>
+                    <div class="controls">
+                        <input type="number" min = "0" max = "4" step = ".01" data-ng-model="education_and_activities.self_reported_GPA" id="gpa" class="form-control" placeholder="GPA" required>
                     </div>
                     
                 <label class="control-label" for="name">FE</label>
                     <div class="controls">
-                        <input type="number" min = "-1" data-ng-model="fd" id="fd" class="form-control" placeholder="FE" required>
+                        <input type="number" min = "-1" data-ng-model="fe" id="fe" class="form-control" placeholder="FE" required>
                     </div>
                     
                 <label class="control-label" for="name">GMAT</label>
@@ -35,7 +40,7 @@
                     
                 <label class="control-label" for="name">GRE</label>
                     <div class="controls">
-                        <input type="number" min = "-1" max = "800" step = "1" data-ng-model="gre" id="gre" class="form-control" placeholder="GRE" required>
+                        <input type="number" min = "-1" max = "800" step = "1" data-ng-model="GRE" id="gre" class="form-control" placeholder="GRE" required>
                     </div>
                     
                 <label class="control-label" for="name">IELTS</label>

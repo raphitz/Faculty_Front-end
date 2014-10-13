@@ -1,6 +1,6 @@
 <section data-ng-controller="GradApplicationsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Grad Applications</h1>
+        <h1>Existing Graduate Applications</h1>
     </div>
     <table class="table table-hover">
         <thead>
@@ -40,11 +40,10 @@
                 -->
             </td>
 
-            <td data-ng-bind="gradApplication.gpa">
-            </td>
+            <td data-ng-bind="gradApplication.education_and_activities.self_reported_GPA"></td>
 
             <td>
-                <a data-ng-href="javascript:;" data-ng-click="downloadPDF()">Download PDF</a>
+                <a href="javascript:;" data-ng-click="downloadPDF()">Download PDF</a>
             </td>
 
         </tr>

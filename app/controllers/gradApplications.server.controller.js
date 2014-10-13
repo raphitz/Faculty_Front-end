@@ -14,6 +14,7 @@ var mongoose = require('mongoose'),
  * Create a GradApplication
  */
 exports.create = function(req, res) {
+	console.log(req.body);
 	var gradApplication = new GradApplication(req.body);
 	gradApplication.user = req.user;
 

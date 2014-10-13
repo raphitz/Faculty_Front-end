@@ -48,7 +48,7 @@ var GradApplicationSchema = new Schema({
     /**
      * Old application
      */
-    name: {
+    name: { // TODO remove in favor of personal_info.name
         type: String,
         default: null,
         required: 'Please fill in the applicant\'s name',
@@ -67,7 +67,7 @@ var GradApplicationSchema = new Schema({
      * New Application
      */
 
-    personal_info: [{
+    personal_info: {
         name: [{
             first: String,
             middle: String,
@@ -114,13 +114,13 @@ var GradApplicationSchema = new Schema({
         dob: Date,
         gender: {
             type: String,
-            default: '',
-            enum: ['M', 'F']
+            default: '?',
+            enum: ['?', 'M', 'F']
         },
         nation_of_citizenship: {
             type: String,
-            default: '',
-            enum: countryCodes
+            default: '?',
+            enum: ['?'].concat(countryCodes)
         },
         ethnicity: [{
             hispanic: Boolean,
@@ -178,7 +178,7 @@ var GradApplicationSchema = new Schema({
             charged_or_disciplined: Boolean,
             charged_law_violation: Boolean
         }]
-    }],
+    },
 
     // special_programs_info: {
     //     special_programs_application: {
@@ -258,139 +258,132 @@ var GradApplicationSchema = new Schema({
     //     },
     //     statement_of_purpose: String
     // },
-    // education_and_activities: {
-    //     undergraduate: {
-    //         major: {
-    //             type: String,
-    //             default: ''
-    //         },
-    //         specialization: {
-    //             type: String,
-    //             default: ''
-    //         }
-    //     },
-    //     colleges: [String],
-    //     /* opening another link*/
-    //     self_reported_GPA: {
-    //         type: String,
-    //         enum: [
-    //             'A',
-    //             'A-',
-    //             'B+',
-    //             'B',
-    //             'B-',
-    //             'C+',
-    //             'C',
-    //             'C-',
-    //             'D+',
-    //             'D',
-    //             'D-',
-    //             'F'
-    //         ],
-    //     },
-    //     test_scores: {
+    education_and_activities: {
+        undergraduate: [{
+            major: {
+                type: String,
+                default: ''
+            },
+            specialization: {
+                type: String,
+                default: ''
+            }
+        }],
+        colleges: [String], // TODO database of universities
+        /* opening another link*/
+        self_reported_GPA: Number,
+        // TODO verify all below fields match actual app
+        test_scores: [{
 
-    //         // Graduate Record Examinations
-    //         GRE: {
-    //             type: Boolean,
-    //             date: Date,
-    //             verbal: Number,
-    //             quantitative: Number,
-    //             analytical_writing: Number,
-    //             total: Number
-    //         },
+            // Graduate Record Examinations
+            GRE: Number,
+            //GRE: {
+            //    type: Boolean,
+            //    date: Date,
+            //    verbal: Number,
+            //    quantitative: Number,
+            //    analytical_writing: Number,
+            //    total: Number
+            //},
 
-    //         // Graduate Management Admission Test
-    //         GMAT: {
-    //             type: Boolean,
-    //             date: Date,
-    //             verbal: Number,
-    //             quantitative: Number,
-    //             analytical_writing: Number,
-    //             integrated_reasoning: Number,
-    //             total: Number
-    //         },
+            // Graduate Management Admission Test
+            GMAT: Number,
+            //GMAT: {
+            //    type: Boolean,
+            //    date: Date,
+            //    verbal: Number,
+            //    quantitative: Number,
+            //    analytical_writing: Number,
+            //    integrated_reasoning: Number,
+            //    total: Number
+            //},
 
-    //         // Miller Analogies Test
-    //         MAT: {
-    //             type: Boolean,
-    //             date: Date,
-    //             score: String /* String? */
-    //         },
+            // Miller Analogies Test
+            MAT: Number,
+            //MAT: {
+            //    type: Boolean,
+            //    date: Date,
+            //    score: String /* String? */
+            //},
 
-    //         // Fundamentals of Engineering
-    //         FE: {
-    //             type: Boolean,
-    //             date: Date,
-    //             score: String /* String? */
-    //         },
+            // Fundamentals of Engineering
+            FE: Number,
+            //FE: {
+            //    type: Boolean,
+            //    date: Date,
+            //    score: String /* String? */
+            //},
 
-    //         // Test of Spoken English
-    //         TSE: {
-    //             type: Number
-    //                 // TODO
-    //         },
+            // Test of Spoken English
+            TSE: {
+                type: Number
+                    // TODO
+            },
 
-    //         // Test of English as a Foreign Language
-    //         TOEFL: {
-    //             type: Boolean,
-    //             paper_date: Date,
-    //             listening: Number,
-    //             writing: Number,
-    //             reading: Number,
-    //             total: Number,
-    //             internet_date: Date,
-    //             readingi: Number,
-    //             listeningi: Number,
-    //             speakingi: Number,
-    //             writingi: Number,
-    //             totali: Number
-    //         },
+            // Test of English as a Foreign Language
+            TOEFL: Number,
+            //TOEFL: {
+            //    type: Boolean,
+            //    paper_date: Date,
+            //    listening: Number,
+            //    writing: Number,
+            //    reading: Number,
+            //    total: Number,
+            //    internet_date: Date,
+            //    readingi: Number,
+            //    listeningi: Number,
+            //    speakingi: Number,
+            //    writingi: Number,
+            //    totali: Number
+            //},
 
-    //         // International English Language Testing System
-    //         IELTS: {
-    //             type: Boolean,
-    //             date: Date,
-    //             listening: Number,
-    //             writing: Number,
-    //             reading: Number,
-    //             speaking: Number,
-    //             total: Number
-    //         },
+            // International English Language Testing System
+            IELTS: Number,
+            //IELTS: {
+            //    type: Boolean,
+            //    date: Date,
+            //    listening: Number,
+            //    writing: Number,
+            //    reading: Number,
+            //    speaking: Number,
+            //    total: Number
+            //},
 
-    //         // Michigan English Language Assessment Battery
-    //         MELAB: {
-    //             type: Boolean,
-    //             date: Date,
-    //             composition: Number,
-    //             listening: Number,
-    //             gcvr: Number,
-    //             total: Number
-    //         },
-    //         uf_lang_institute_program: Boolean
-    //     },
-    //     activities: {
-    //         activity: {
-    //             type: String,
-    //             default: ''
-    //         },
-    //         city: String,
-    //         country: String,
-    //         state: String,
-    //         from: String,
-    //         day1: String,
-    //         to: String,
-    //         day2: String
-    //     },
-    //     resume: {
-    //         name: String,
-    //         file: Buffer
-    //     },
-    //     transcript: {
-    //         name: String,
-    //         file: Buffer
-    //     }
-    // },
+            // Michigan English Language Assessment Battery
+            MELAB: Number,
+            //MELAB: {
+            //    type: Boolean,
+            //    date: Date,
+            //    composition: Number,
+            //    listening: Number,
+            //    gcvr: Number,
+            //    total: Number
+            //},
+
+            uf_lang_institute_program: Boolean
+        }],
+        activities: [{
+            activity: {
+                type: String,
+                default: ''
+            },
+            city: String,
+            country: String,
+            state: String,
+            from: String,
+            day1: String,
+            to: String,
+            day2: String
+        }],
+        resume: [{
+            name: String,
+            file: Buffer
+        }],
+        transcript: [{
+            name: String,
+            file: Buffer
+        }]
+    },
     // residency_affadivit: {
     //     florida_residence_categories: {
     //         A: {
