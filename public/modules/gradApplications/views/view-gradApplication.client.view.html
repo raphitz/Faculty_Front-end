@@ -1,86 +1,49 @@
-<section data-ng-controller="GradApplicationsController" data-ng-init="findOne()">
+<section data-ng-controller="GradApplicationsController" data-ng-init="findOne(); fields = [
+				{
+               disp: 'First Name',
+               field: 'personal_info.name.first'
+            },
+				{
+               disp: 'Self-reported unweighted GPA',
+               field: 'education_and_activities.self_reported_GPA'
+            },
+				{
+               disp: 'FE Exam Score',
+               field: 'education_and_activities.test_scores.FE'
+            },
+				{
+               disp: 'GMAT Exam Score',
+               field: 'education_and_activities.test_scores.GMAT'
+            },
+				{
+               disp: 'GRE Exam Score',
+               field: 'education_and_activities.test_scores.GRE'
+            },
+				{
+               disp: 'IELTS Exam Score',
+               field: 'education_and_activities.test_scores.IELTS'
+            },
+				{
+               disp: 'MELAB Exam Score',
+               field: 'education_and_activities.test_scores.MELAB'
+            },
+				{
+               disp: 'TOEFL Exam Score',
+               field: 'education_and_activities.test_scores.TOEFL'
+            },
+				{
+               disp: 'TSE Exam Score',
+               field: 'education_and_activities.test_scores.TSE'
+            }
+			]">
 
-	<table>
-		<tr>
-			<th>Field</th>
-			<th>Value</th>
-		</tr>
-		<tr ng-repeat="n in
-			[
-				'name',
-				'gpa',
-				'fe',
-				'gmat',
-				'gre',
-				'ielts',
-				'melab',
-				'toefl',
-				'tse'
-			]
-		">
-			<td data-ng-bind='n'></td>
-			<td data-ng-bind='gradApplication[n]'></td>
-		</tr>
-	</table>
+   <div ng-repeat="n in fields">
+      <div class="page-header gradApplicationDetail" style="clear: both">
+         <h1 data-ng-bind='n.disp+": "'></h1>
+         <h1 class="value" data-ng-bind='getprop(gradApplication, n.field, "")'> </h1>
+      </div>
+   </div>
 
-	<div class="page-header" style="clear: both">
-		<h1 style="float: left"> Name: </h1> 
-		<h1 data-ng-bind="gradApplication.name" style="float: left"> </h1>
-	</div>
+   <div class="gradApplicationFooter"></div>
 	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> GPA: </h1>
-		<h1 data-ng-bind="gradApplication.gpa" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> FE Score: </h1>
-		<h1 data-ng-bind="gradApplication.fe" style="float: left"></h1>
-	</div>
-	
-    <div class="page-content" style="clear: both">
-    	<h1 style="float: left"> GMAT Score: </h1>
-		<h1 data-ng-bind="gradApplication.gmat" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> GRE Score: </h1>
-		<h1 data-ng-bind="gradApplication.gre" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> IELTS Score: </h1>
-		<h1 data-ng-bind="gradApplication.ielts" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> MELAB Score: </h1>
-		<h1 data-ng-bind="gradApplication.melab" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> TOEFL Score: </h1>
-		<h1 data-ng-bind="gradApplication.toefl" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> TSE Score: </h1>
-		<h1 data-ng-bind="gradApplication.tse" style="float: left"></h1>
-	</div>
-	
-	<div class="pull-right" data-ng-show="authentication.user._id == gradApplication.user._id">
-		<a class="btn btn-primary" href="/#!/gradApplications/{{gradApplication._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	
-	<div class="text-muted">
-		Posted on 
-		<span data-ng-bind="gradApplication.created | date:'mediumDate'"></span>
-		by
-		<span data-ng-bind="gradApplication.user.displayName"></span>
-	</div>
 </section>

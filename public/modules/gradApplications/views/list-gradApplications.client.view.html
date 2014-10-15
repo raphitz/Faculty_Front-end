@@ -10,7 +10,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tr data-ng-repeat="gradApplication in gradApplications" data-ng-href="#!/gradApplications/{{gradApplication._id}}">
+        <tr data-ng-repeat="gradApplication in gradApplications" data-ng-href="#!/gradApplications/{{gradApplication._id}}" data-ng-click="viewPage()" class="gradApplicationListing">
             <td>
                 <h3 class="list-group-item-heading">
                    <span data-ng-bind="gradApplication.personal_info.name.first"></span>

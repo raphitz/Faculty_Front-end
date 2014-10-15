@@ -2,36 +2,6 @@
 
 (function() {
    
-   // If you pass this function (foo, 'bar.baz', 'quux') it will execute foo.bar.baz = 'quux';
-   // Creates intermediary objects along the way, too.
-   function setprop(obj, path, value) {
-      var parts = path.split('.');
-      if (parts.length === 1) {
-         obj[parts[0]] = value;
-         return;
-      }
-      if (!(parts[0] in obj)) {
-         obj[parts[0]] = {};
-      }
-      var x = parts.shift();
-      setprop(obj[x], parts.join('.'), value);
-   }
-
-   function getprop(obj, path, _default) {
-       if (path === '') {
-          return obj;
-       }
-       if (typeof obj !== 'object') {
-         return _default;
-       }
-       var parts = path.split('.');
-       var firstaccessor = parts[0];
-       parts.shift();
-       obj = obj[firstaccessor];
-       return getprop(obj, parts.join('.'), _default);
-   }
-
-
    function generatePdfDoc(app) {
       function p(prop) {
          var value = getprop(app, prop, '');
@@ -133,6 +103,8 @@
    // GradApplications controller
    angular.module('gradApplications').controller('GradApplicationsController', ['$scope', '$stateParams', '$location', 'Authentication', 'GradApplications',
       function($scope, $stateParams, $location, Authentication, GradApplications ) {
+         $scope.getprop = getprop;
+
          $scope.authentication = Authentication;
 
          $scope.countries = ApplicationConfiguration.countries;
@@ -176,7 +148,7 @@
 
             // Redirect after save
             gradApplication.$save(function(response) {
-               $location.path('gradApplications');
+               $location.path('gradApplications/' + response._id);
 
                // Clear form fields
                $scope.name = '';
@@ -222,6 +194,10 @@
             $scope.gradApplication = GradApplications.get({ 
                gradApplicationId: $stateParams.gradApplicationId
             });
+         };
+
+         $scope.viewPage = function() {
+            $location.path('gradApplications/' + this.gradApplication._id);
          };
 
                // Summarize an existing GradApplication

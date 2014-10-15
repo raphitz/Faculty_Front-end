@@ -21,7 +21,9 @@
 		"jasmine": true,
 		"angular": true,
 		"ApplicationConfiguration": true,
-      "pdfMake": true
+      "pdfMake": true,
+      "setprop": true,
+      "getprop": true
 	},
 	"predef": [ // Extra globals.
 		"define",
