@@ -75,12 +75,13 @@ exports.delete = function(req, res) {
 /**
  * List of GradApplications
  */
-exports.list = function(req, res) { GradApplication.find().sort('-created').populate('user', 'displayName').exec(function(err, gradApplications) {
+exports.list = function(req, res) { 
+	GradApplication.find().sort('-created').populate('user', 'displayName').exec(function(err, gradApplications) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {
+		}else {
 			res.jsonp(gradApplications);
 		}
 	});

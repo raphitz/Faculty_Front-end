@@ -96,7 +96,9 @@ var GradApplicationSchema = new Schema({
         },
         UFID: {
             type: String,
-            default: ''
+            default: '',
+            match: /^(\d{4}-\d{4})?$/,
+            unique: true
         },
         previous_application: {
             type: Boolean,
