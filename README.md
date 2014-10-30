@@ -9,7 +9,7 @@ of the University of Florida's admissions utilities. Work will be proceeding
 as part of our group's project for CEN 3031: Introduction to Software Engineering.
 
 Authors (& GatorLink usernames)
--------------------------------
+------------------------------------
 * Andrew McKinlay (mckinlay.andrew)
 * Ekaterina Vorobieva (evorobieva)
 * John Reed (johnreedlol)
