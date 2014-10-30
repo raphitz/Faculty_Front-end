@@ -37,7 +37,7 @@
             }
 			]">
 
-
+<!--
   <p>
     <button class="btn btn-default btn-sm" ng-click="tabs[0].active = true">Select second tab</button>
     <button class="btn btn-default btn-sm" ng-click="tabs[1].active = true">Select third tab</button>
@@ -45,6 +45,7 @@
   <p>
     <button class="btn btn-default btn-sm" ng-click="tabs[1].disabled = ! tabs[1].disabled">Enable / Disable third tab</button>
   </p>
+
   <hr />
 
   <tabset>
@@ -68,20 +69,16 @@
   </tabset>
 
   <hr />
-
+-->
   <tabset justified="true">
     <tab heading="Application">
-      Full application:
+      <h3> Full application: </h3>
 <br>
 
 
-
-
-
 <div ng-repeat="n in fields">
-      <div class="page-header gradApplicationDetail" style="clear: both">
-         <h1 data-ng-bind='n.disp+": "'></h1>
-         <h1 class="value" data-ng-bind='getprop(gradApplication, n.field, "")'> </h1>
+      <div class="gradApplicationDetail" style="clear: both">
+         <p data-ng-bind='n.disp+ ": " + getprop(gradApplication, n.field, "")'></p>
       </div>
    </div>
 
@@ -113,9 +110,20 @@
 <p> TOEFL Writing: 54.4% </p>
 
 
-
-
-
+<!--
+<table style="width:100%">
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td> 
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td> 
+    <td>94</td>
+  </tr>
+</table> 
+-->
 
 
 
