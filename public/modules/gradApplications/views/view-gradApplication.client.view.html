@@ -1,86 +1,169 @@
-<section data-ng-controller="GradApplicationsController" data-ng-init="findOne()">
+<section data-ng-controller="GradApplicationsController" data-ng-init="findOne(); fields = [
+				{
+               disp: 'First Name',
+               field: 'personal_info.name.first'
+            },
+				{
+               disp: 'Self-reported unweighted GPA',
+               field: 'education_and_activities.self_reported_GPA'
+            },
+				{
+               disp: 'FE Exam Score',
+               field: 'education_and_activities.test_scores.FE'
+            },
+				{
+               disp: 'GMAT Exam Score',
+               field: 'education_and_activities.test_scores.GMAT'
+            },
+				{
+               disp: 'GRE Exam Score',
+               field: 'education_and_activities.test_scores.GRE'
+            },
+				{
+               disp: 'IELTS Exam Score',
+               field: 'education_and_activities.test_scores.IELTS'
+            },
+				{
+               disp: 'MELAB Exam Score',
+               field: 'education_and_activities.test_scores.MELAB'
+            },
+				{
+               disp: 'TOEFL Exam Score',
+               field: 'education_and_activities.test_scores.TOEFL'
+            },
+				{
+               disp: 'TSE Exam Score',
+               field: 'education_and_activities.test_scores.TSE'
+            }
+			]">
 
-	<table>
-		<tr>
-			<th>Field</th>
-			<th>Value</th>
-		</tr>
-		<tr ng-repeat="n in
-			[
-				'name',
-				'gpa',
-				'fe',
-				'gmat',
-				'gre',
-				'ielts',
-				'melab',
-				'toefl',
-				'tse'
-			]
-		">
-			<td data-ng-bind='n'></td>
-			<td data-ng-bind='gradApplication[n]'></td>
-		</tr>
-	</table>
+<!--
+  <p>
+    <button class="btn btn-default btn-sm" ng-click="tabs[0].active = true">Select second tab</button>
+    <button class="btn btn-default btn-sm" ng-click="tabs[1].active = true">Select third tab</button>
+  </p>
+  <p>
+    <button class="btn btn-default btn-sm" ng-click="tabs[1].disabled = ! tabs[1].disabled">Enable / Disable third tab</button>
+  </p>
 
-	<div class="page-header" style="clear: both">
-		<h1 style="float: left"> Name: </h1> 
-		<h1 data-ng-bind="gradApplication.name" style="float: left"> </h1>
-	</div>
+  <hr />
+
+  <tabset>
+    <tab heading="Static title">Static content</tab>
+    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+      {{tab.content}}
+    </tab>
+    <tab select="alertMe()">
+      <tab-heading>
+        <i class="glyphicon glyphicon-bell"></i> Alert!
+      </tab-heading>
+      I've got an HTML heading, and a select callback. Pretty cool!
+    </tab>
+  </tabset>
+
+  <hr />
+
+  <tabset vertical="true" type="pills">
+    <tab heading="Vertical 1">Vertical content 1</tab>
+    <tab heading="Vertical 2">Vertical content 2</tab>
+  </tabset>
+
+  <hr />
+-->
+  <tabset justified="true">
+    <tab heading="Application">
+      <h3> Full application: </h3>
+<br>
+
+
+<div ng-repeat="n in fields">
+      <div class="gradApplicationDetail" style="clear: both">
+         <p data-ng-bind='n.disp+ ": " + getprop(gradApplication, n.field, "")'></p>
+      </div>
+   </div>
+
+   <div class="gradApplicationFooter"></div>
+
+
+
+
+
+<br>
+    </tab>
+    <tab heading="Percentile Charts">GRE and TOEFL score and subscore percentiles:
+
+
+<p>  </p>
+<br>
+
+<p> GRE Overall: 43.3% </p>
+<p> GRE Math: 25.7% </p>
+<p> GRE Reading: 70.3% </p>
+<p> GRE Writing: 80.4% </p>
+
+<br>
+
+<p> TOEFL Overall: 54.0% </p>
+<p> TOEFL Reading: 75.2% </p>
+<p> TOEFL Listening: 27.7% </p>
+<p> TOEFL Speaking: 99.3% </p>
+<p> TOEFL Writing: 54.4% </p>
+
+
+<!--
+<table style="width:100%">
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td> 
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td> 
+    <td>94</td>
+  </tr>
+</table> 
+-->
+
+
+
+    </tab>
+    <tab heading="Comments">Add and read comments
+
+
+
+
+<br>
+<br>
+
+<textarea name="myComment" cols="50" rows="5">
+This textbox has been given a name of "myTextBox". This can be used by any script that process the contents of this textbox (once it's been submitted to the server).
+</textarea>
+
+<br>
+
+Name: <input type="text" id="myName" value="Name">
+
+<p>Click the button to post a comment.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+   document.getElementById("myComment").value = "Woo ha!";
+    document.getElementById("myName").value = "Johnny Bravo";
+}
+</script>
+
+
+
+
+
+
+    </tab>
+  </tabset>
+
+
+
 	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> GPA: </h1>
-		<h1 data-ng-bind="gradApplication.gpa" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> FE Score: </h1>
-		<h1 data-ng-bind="gradApplication.fe" style="float: left"></h1>
-	</div>
-	
-    <div class="page-content" style="clear: both">
-    	<h1 style="float: left"> GMAT Score: </h1>
-		<h1 data-ng-bind="gradApplication.gmat" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> GRE Score: </h1>
-		<h1 data-ng-bind="gradApplication.gre" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> IELTS Score: </h1>
-		<h1 data-ng-bind="gradApplication.ielts" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> MELAB Score: </h1>
-		<h1 data-ng-bind="gradApplication.melab" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> TOEFL Score: </h1>
-		<h1 data-ng-bind="gradApplication.toefl" style="float: left"></h1>
-	</div>
-	
-	<div class="page-content" style="clear: both">
-		<h1 style="float: left"> TSE Score: </h1>
-		<h1 data-ng-bind="gradApplication.tse" style="float: left"></h1>
-	</div>
-	
-	<div class="pull-right" data-ng-show="authentication.user._id == gradApplication.user._id">
-		<a class="btn btn-primary" href="/#!/gradApplications/{{gradApplication._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	
-	<div class="text-muted">
-		Posted on 
-		<span data-ng-bind="gradApplication.created | date:'mediumDate'"></span>
-		by
-		<span data-ng-bind="gradApplication.user.displayName"></span>
-	</div>
 </section>

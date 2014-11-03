@@ -1,0 +1,15 @@
+.gradApplicationListing {
+   cursor: pointer;
+}
+
+.gradApplicationDetail .value {
+   padding-left: .5em;
+}
+
+.gradApplicationDetail h1 {
+   float: left;
+}
+
+.gradApplicationFooter {
+   clear: both;
+}
