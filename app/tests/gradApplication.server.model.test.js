@@ -12,7 +12,6 @@ var should = require('should'),
  * Globals
  */
 var user, gradApplication, gradApplicationDup, gradApplicationBlankuser;
-
 /**
  * Unit tests
  */
@@ -83,17 +82,54 @@ describe('GradApplication Model Unit Tests:', function() {
     			});
    			});
   		});
+	});
 
-		/*it('should be able to show an error when try to save with empty name', function(done) { 
-			//gradApplication.name = '';
-			gradApplication.personal_info.name.firstName = '';
-			gradApplication.personal_info.name.lastName = '';
+	afterEach(function(done) { 
+		GradApplication.remove().exec();
+		User.remove().exec();
+		done();
+	});
+});
 
-			return gradApplication.save(function(err) {
-				should.exist(err);
-				done();
-			});
-		});*/
+/**
+ * route tests
+ */
+describe('Integration Testing:', function() {
+	beforeEach(function() {
+		user = new User({
+			firstName: 'Full',
+			lastName: 'Name',
+			displayName: 'Full Name',
+			email: 'test@test.com',
+			username: 'username',
+			password: 'password'
+		});
+		browser.get('http://localhost:3000/#!/');
+	});
+	describe('Upon Logging in', function() {
+		it('should not redirect to login page immediately', function(done) {
+			// browser.get('http://localhost:3000/#!/signup');
+			//browser.navigateTo('#/').pause();
+			browser.get('http://localhost:3000/#!/');
+    		expect(browser.location().path()).toBe("/");
+		});
+
+		//id is not of proper length
+		it('should allow user to login', function(done) {
+			browser.get('http://localhost:3000/#!/signin');
+			browser.wait(1000);
+
+    		// assuming inputs have ng-model specified, and this combination will successfully login
+    		 input('username').enter('username');
+    		 input('password').enter('password');
+             element('submit').click();
+
+            // logged in route and redirected to gradApplications list
+            // expect(browser.getCurrentUrl().toBe("http://localhost:3000/#!/gradApplications");
+
+            // my dashboard page has a label for the email address of the logged in user
+             //expect(element('#email').html()).toContain('test@test.com');
+		 });
 	});
 
 	afterEach(function(done) { 
