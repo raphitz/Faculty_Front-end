@@ -36,10 +36,6 @@ describe('GradApplication Model Unit Tests:', function() {
 				name: 'GradApplication Name2',
 				user: user
 			});
-			gradApplicationBlankuser = new GradApplication({
-				name: 'GradApplication With No User',
-				user: user
-			});
 			done();
 		});
 	});
@@ -84,6 +80,13 @@ describe('GradApplication Model Unit Tests:', function() {
    			});
   		});
 	});
+
+	// describe('End to End Integration Testing using Protractor',function(){
+ //        it('should load the browser page', function(done) { 
+ //        	browser.get('http://localhost:3000/#!/')
+ //   			done();
+ //  		});
+	// });
 
 	afterEach(function(done) { 
 		GradApplication.remove().exec();

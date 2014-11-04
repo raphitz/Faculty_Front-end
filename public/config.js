@@ -5,7 +5,11 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'admissions';
 	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils'];
-
+   //protractor
+   // exports.config = {
+   //    seleniumAddress: 'http://localhost:4444/wd/hub',
+   //    specs: ['./modules/gradApplications/tests/todo-spec.js']
+   // };
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
 		// Create angular module
