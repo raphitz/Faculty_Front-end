@@ -72,10 +72,10 @@
 -->
   <tabset justified="true">
     <tab heading="Application">
-      <h3> Full application: </h3>
-<br>
-
-
+      <br>
+      <br>
+      <b> Full application: </b>
+      <br>
 <div ng-repeat="n in fields">
       <div class="gradApplicationDetail" style="clear: both">
          <p data-ng-bind='n.disp+ ": " + getprop(gradApplication, n.field, "")'></p>
@@ -89,13 +89,12 @@
 
 
 <br>
-    </tab>
-    <tab heading="Percentile Charts">GRE and TOEFL score and subscore percentiles:
-
-
-<p>  </p>
+</tab>
+<tab heading="Percentile Charts">
 <br>
-
+<br>
+<p><b>GRE and TOEFL score and subscore percentiles:</b></p>
+<br>
 <p> GRE Overall: 43.3% </p>
 <p> GRE Math: 25.7% </p>
 <p> GRE Reading: 70.3% </p>
@@ -124,46 +123,34 @@
   </tr>
 </table> 
 -->
+</tab>
+<tab heading="Comments">
+  <br>
+  <br>
+  <b>Submit a Comment</b>
 
+  <div>
+  Name: <input id='commentsName' type="text" value="Name">
+  </div>
 
+  <div>
+  <textarea id='commentsBody' name="myComment" cols="50" rows="5">
+  This textbox has been given a name of "myTextBox". This can be used by any script that process the contents of this textbox (once it's been submitted to the server).
+  </textarea>
+  </div>
 
-    </tab>
-    <tab heading="Comments">Add and read comments
+  <input type="submit" class="btn btn-default">
 
+  <div id='submittedComments'> <!-- Prior Comments Area -->
 
-
-
-<br>
-<br>
-
-<textarea name="myComment" cols="50" rows="5">
-This textbox has been given a name of "myTextBox". This can be used by any script that process the contents of this textbox (once it's been submitted to the server).
-</textarea>
-
-<br>
-
-Name: <input type="text" id="myName" value="Name">
-
-<p>Click the button to post a comment.</p>
-
-<button onclick="myFunction()">Try it</button>
+  </div>
 
 <script>
 function myFunction() {
-   document.getElementById("myComment").value = "Woo ha!";
+    document.getElementById("myComment").value = "Woo ha!";
     document.getElementById("myName").value = "Johnny Bravo";
 }
 </script>
-
-
-
-
-
-
-    </tab>
-  </tabset>
-
-
-
-	
+</tab>
+</tabset>	
 </section>

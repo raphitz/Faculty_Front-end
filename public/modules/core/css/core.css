@@ -1,6 +1,12 @@
 .content {
 	margin-top: 50px;
 }
+.comment {
+	opacity: : 0.5;
+	&.approved {
+		opacity: 1;
+	}
+}
 .undecorated-link:hover {
 	text-decoration: none;
 }
