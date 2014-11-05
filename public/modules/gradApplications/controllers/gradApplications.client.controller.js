@@ -101,8 +101,8 @@
 
 
    // GradApplications controller
-   angular.module('gradApplications').controller('GradApplicationsController', ['$scope', '$stateParams', '$location', 'Authentication', 'GradApplications',
-      function($scope, $stateParams, $location, Authentication, GradApplications ) {
+   angular.module('gradApplications').controller('GradApplicationsController', ['$scope', '$stateParams', '$location', '$modal', 'Authentication', 'GradApplications',
+      function($scope, $stateParams, $location, $modal, Authentication, GradApplications ) {
 
 
          //Tabs
@@ -219,7 +219,15 @@
          };
 
          $scope.viewPage = function() {
-            $location.path('gradApplications/' + this.gradApplication._id);
+            //$location.path('gradApplications/' + this.gradApplication._id);
+            $modal.open({
+               templateUrl: 'myModalContent.html',
+               //controller: 'ModalInstanceCtrl',
+               size: 'lg',
+               resolve: {
+               }
+            });
+
          };
 
                // Summarize an existing GradApplication
