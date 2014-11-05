@@ -13,26 +13,49 @@
 .gradApplicationFooter {
    clear: both;
 }
-#commentsName {
-	padding: 5px;
+.comments.name {
+	padding: 2px;
 	font-family: Tahoma, sans-serif;
-	width: 20%;
 	resize: none;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 2px;
 	border: solid 0.5 px;
 	-webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    border: hidden;
 }
-#commentsBody {
-	padding: 5px;
+.comments.name.submitted {
+	padding: 2px;
 	font-family: Tahoma, sans-serif;
-	width: 100%;
 	resize: none;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 2px;
+	border: solid 0.5 px;
 	-webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    float: right;
+}
+.comments.body {
+	padding: 2px;
+	font-family: Tahoma, sans-serif;
+	resize: none;
+	width: 100%;
+	margin-top: 2px;
+	margin-bottom: 5px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.comments.body.submitted {
+	padding-top: 2px;
+	font-family: Tahoma, sans-serif;
+	resize: none;
+	margin-top: 2px;
+	margin-bottom: 10px;
+    border: hidden;
+}
+#comments {
+	margin-bottom: 10px;
 }
