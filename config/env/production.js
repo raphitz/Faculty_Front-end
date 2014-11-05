@@ -7,6 +7,7 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+            'public/lib/sortable/css/sortable-theme-bootstrap.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
@@ -19,7 +20,8 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
 				'public/lib/pdfmake/build/pdfmake.min.js',
-				'public/lib/pdfmake/build/vfs_fonts.js'
+				'public/lib/pdfmake/build/vfs_fonts.js',
+            'public/lib/sortable/js/sortable.js'
 			]
 		},
 		css: [ 'public/dist/application.min.css' ],
