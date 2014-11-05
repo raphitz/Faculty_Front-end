@@ -3,9 +3,9 @@
 }
 .comment {
 	opacity: : 0.5;
-	&.approved {
-		opacity: 1;
-	}
+}
+.comment.approved {
+   opacity: 1;
 }
 .undecorated-link:hover {
 	text-decoration: none;
