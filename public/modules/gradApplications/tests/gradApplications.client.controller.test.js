@@ -93,7 +93,12 @@
 		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(GradApplications) {
 			// Create a sample GradApplication object
 			var sampleGradApplicationPostData = new GradApplications({
-				name: 'New GradApplication'
+				"personal_info": {
+					"name": {}
+				},
+				"education_and_activities": {
+					"test_scores": {}
+				}
 			});
 
 			// Create a sample GradApplication response
