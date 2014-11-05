@@ -96,7 +96,7 @@
                      </div>
                      <div class='comments name submitted' type="text" value="Name" readonly>
                        Andrew Jackson
-                     </div> 
+                     </div>
                   </div>
                 <br>
                 <br>
@@ -128,61 +128,63 @@
     <div class="page-header">
         <h1>Existing Graduate Applications</h1>
     </div>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>UFID </th>
-                <th>Unweighted GPA</th>
-                <th>GRE Overall</th>
-                <th>GRE Math</th>
-                <th>GRE Reading</th>
-                <th>GRE Writing</th>
-                <th>TOEFL Overall</th>
-                <th>TOEFL Speaking</th>
-                <th>TOEFL Reading</th>
-                <th>TOEFL Writing</th>
-                <th>TOEFL Listening</th>
-                <th>Ethnicity</th>
-                <th>Race</th>
-                <th>Nationality</th>
-                <th>Actions</th>
+		<div class="table-responsive">
+	    <table class="table table-hover sortable-theme-bootstrap" data-sortable onclick="Sortable.init()">
+	        <thead>
+	            <tr>
+	                <th>Name</th>
+	                <th>UFID </th>
+	                <th>Unweighted GPA</th>
+	                <th>GRE Overall</th>
+	                <th>GRE Math</th>
+	                <th>GRE Reading</th>
+	                <th>GRE Writing</th>
+	                <th>TOEFL Overall</th>
+	                <th>TOEFL Speaking</th>
+	                <th>TOEFL Reading</th>
+	                <th>TOEFL Writing</th>
+	                <th>TOEFL Listening</th>
+	                <th>Ethnicity</th>
+	                <th>Race</th>
+	                <th>Nationality</th>
+	                <th>Actions</th>
 
-            </tr>
-        </thead>
-        <tr data-ng-repeat="gradApplication in gradApplications" data-ng-href="#!/gradApplications/{{gradApplication._id}}" data-ng-click="viewPage()" class="gradApplicationListing">
-            <td>
-                <h3 class="list-group-item-heading">
-                   <span data-ng-bind="gradApplication.personal_info.name.first"></span>
-                   <span data-ng-bind="gradApplication.personal_info.name.last"></span>
-                </h3>
-            </td>
-            <td data-ng-bind="gradApplication.education_and_activities.personal_info.UFID"></td>
+	            </tr>
+	        </thead>
+	        <tr data-ng-repeat="gradApplication in gradApplications" data-ng-href="#!/gradApplications/{{gradApplication._id}}" data-ng-click="viewPage()" class="gradApplicationListing">
+	            <td>
+	                <h3 class="list-group-item-heading">
+	                   <span data-ng-bind="gradApplication.personal_info.name.first"></span>
+	                   <span data-ng-bind="gradApplication.personal_info.name.last"></span>
+	                </h3>
+	            </td>
+	            <td data-ng-bind="gradApplication.education_and_activities.personal_info.UFID"></td>
 
-            <td data-ng-bind="gradApplication.education_and_activities.self_reported_GPA"></td>
+	            <td data-ng-bind="gradApplication.education_and_activities.self_reported_GPA"></td>
 
-            <td data-ng-bind="gradApplication.education_and_activities.test_scores.GRE"></td>
+	            <td data-ng-bind="gradApplication.education_and_activities.test_scores.GRE"></td>
 
-            <td ></td>
-            <td ></td>
-            <td ></td>
-            <td data-ng-bind="gradApplication.education_and_activities.test_scores.TOEFL"></td>
-            <td ></td>
-            <td ></td>
-            <td ></td>
-            <td ></td>
-            <td data-ng-bind="gradApplication.education_and_activities.education_and_activities.personal_info.dob"></td>
-            <td data-ng-bind="gradApplication.education_and_activities.self_reported_GPA.personal_info.ethnicity"></td>
-            <td data-ng-bind="gradApplication.education_and_activities.self_reported_GPA.personal_info.nation_of_citizenship"></td>
+	            <td ></td>
+	            <td ></td>
+	            <td ></td>
+	            <td data-ng-bind="gradApplication.education_and_activities.test_scores.TOEFL"></td>
+	            <td ></td>
+	            <td ></td>
+	            <td ></td>
+	            <td ></td>
+	            <td data-ng-bind="gradApplication.education_and_activities.education_and_activities.personal_info.dob"></td>
+	            <td data-ng-bind="gradApplication.education_and_activities.self_reported_GPA.personal_info.ethnicity"></td>
+	            <td data-ng-bind="gradApplication.education_and_activities.self_reported_GPA.personal_info.nation_of_citizenship"></td>
 
-            <td>
-                <a href="javascript:;" data-ng-click="downloadPDF()">Download PDF</a>
-            </td>
+	            <td>
+	                <a href="javascript:;" data-ng-click="downloadPDF()">Download PDF</a>
+	            </td>
 
 
 
-        </tr>
-    </table>
+	        </tr>
+	    </table>
+		</div>
     <div class="alert alert-warning text-center" data-ng-hide="!gradApplications.$resolved || gradApplications.length">
     	No Grad Applications yet, why don't you <a href="/#!/gradApplications/create">create one</a>?
     </div>
