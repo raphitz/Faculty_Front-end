@@ -17,10 +17,6 @@ angular.module('gradApplications').config(['$stateProvider',
 			url: '/gradApplications/create',
 			templateUrl: 'modules/gradApplications/views/create-gradApplication.client.view.html'
 		}).
-		state('viewGradApplication', {
-			url: '/gradApplications/:gradApplicationId',
-			templateUrl: 'modules/gradApplications/views/view-gradApplication.client.view.html'
-		}).
 		state('editGradApplication', {
 			url: '/gradApplications/:gradApplicationId/edit',
 			templateUrl: 'modules/gradApplications/views/edit-gradApplication.client.view.html'

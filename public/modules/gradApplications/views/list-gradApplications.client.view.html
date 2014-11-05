@@ -77,30 +77,46 @@
 
             </tab>
             <tab heading="Comments">
-               <br>
-               <br>
-               <b>Submit a Comment</b>
+              <br>
+              <br>
+              <b>Submit a Comment</b>
 
-               <div>
-                  Name:
-                     <input id='commentsName' type="text" value="Name">
-               </div>
+              <div style="margin-bottom: 50px; width: 50%;">
+                 Name: <input class='comments name' type="text" placeholder="username">
+                 <br>
+                 <textarea class='comments body' rows="5" placeholder="Begin writing a comment here..."></textarea>
+                 <br>
+                 <input type="submit" class="btn btn-default">
+              </div>
 
-               <div>
-                  <textarea
-                        id='commentsBody'
-                        name="myComment"
-                        cols="50"
-                        rows="5"
-                     placeholder="Enter your comment here..."></textarea>
-               </div>
-
-               <input type="submit" class="btn btn-default">
-
-               <div id='submittedComments'> <!-- Prior Comments Area -->
-
-               </div>
-
+              <div style="margin-bottom: 50px; width: 50%;"> <!-- Prior Comments Area -->
+                  <div style="padding:10px; border: solid 1px;">
+                     <div class='comments body submitted' type="text" value="comment" readonly>
+                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor justo vitae justo dignissim vestibulum. Fusce eleifend enim vitae tellus semper consectetur. Vestibulum nec lacus lorem. Proin in facilisis augue. Praesent pellentesque quam urna, eu placerat justo viverra ac. Aenean a condimentum velit. Aliquam posuere, leo nec semper porta, mauris libero tincidunt ipsum, at ultrices quam leo sit amet diam. Vestibulum feugiat orci eu velit cursus, sed aliquam dui interdum. Fusce sit amet lacus auctor, suscipit mi vel, cursus diam. Nunc eu hendrerit metus. Phasellus in facilisis lacus. Morbi viverra, eros eu feugiat vehicula, ipsum mi viverra neque, at fermentum lorem mi et purus.
+                     </div>
+                     <div class='comments name submitted' type="text" value="Name" readonly>
+                       Andrew Jackson
+                     </div> 
+                  </div>
+                <br>
+                <br>
+                <div style="padding:10px; border: solid 1px;">
+                  <div class= 'comments body submitted' type="text" value="comment" readonly>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor justo vitae justo dignissim vestibulum. Fusce eleifend enim vitae tellus semper consectetur. Vestibulum nec lacus lorem. Proin in facilisis augue. Praesent pellentesque quam urna, eu placerat justo viverra ac. Aenean a condimentum velit. Aliquam posuere, leo nec semper porta, mauris libero tincidunt ipsum, at ultrices quam leo sit amet diam. Vestibulum feugiat orci eu velit cursus, sed aliquam dui interdum. Fusce sit amet lacus auctor, suscipit mi vel, cursus diam. Nunc eu hendrerit metus. Phasellus in facilisis lacus. Morbi viverra, eros eu feugiat vehicula, ipsum mi viverra neque, at fermentum lorem mi et purus.
+                  </div>
+                  <div class='comments name submitted' type="text" value="Name" readonly>William Mckinley</div>
+                </div>
+                <br>
+                <br>
+                <div style="padding:10px; border: solid 1px;">
+                  <div class='comments body submitted' type="text" value="comment" readonly>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor justo vitae justo dignissim vestibulum. Fusce eleifend enim vitae tellus semper consectetur. Vestibulum nec lacus lorem. Proin in facilisis augue. Praesent pellentesque quam urna, eu placerat justo viverra ac. Aenean a condimentum velit. Aliquam posuere, leo nec semper porta, mauris libero tincidunt ipsum, at ultrices quam leo sit amet diam. Vestibulum feugiat orci eu velit cursus, sed aliquam dui interdum. Fusce sit amet lacus auctor, suscipit mi vel, cursus diam. Nunc eu hendrerit metus. Phasellus in facilisis lacus. Morbi viverra, eros eu feugiat vehicula, ipsum mi viverra neque, at fermentum lorem mi et purus.
+                  </div>
+                  <div class='comments name submitted' type="text" value="Name" readonly>Benjamin Harrison</div>
+                </div>
+                <br>
+                <br>
+              </div>
             </tab>
          </tabset>
       </div>
