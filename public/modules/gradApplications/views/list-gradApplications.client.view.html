@@ -1,20 +1,111 @@
-<section data-ng-controller="GradApplicationsController" data-ng-init="find()">
+<section data-ng-controller="GradApplicationsController" data-ng-init="find(); fields = [
+				{
+               disp: 'First Name',
+               field: 'personal_info.name.first'
+            },
+				{
+               disp: 'Self-reported unweighted GPA',
+               field: 'education_and_activities.self_reported_GPA'
+            },
+				{
+               disp: 'FE Exam Score',
+               field: 'education_and_activities.test_scores.FE'
+            },
+				{
+               disp: 'GMAT Exam Score',
+               field: 'education_and_activities.test_scores.GMAT'
+            },
+				{
+               disp: 'GRE Exam Score',
+               field: 'education_and_activities.test_scores.GRE'
+            },
+				{
+               disp: 'IELTS Exam Score',
+               field: 'education_and_activities.test_scores.IELTS'
+            },
+				{
+               disp: 'MELAB Exam Score',
+               field: 'education_and_activities.test_scores.MELAB'
+            },
+				{
+               disp: 'TOEFL Exam Score',
+               field: 'education_and_activities.test_scores.TOEFL'
+            },
+				{
+               disp: 'TSE Exam Score',
+               field: 'education_and_activities.test_scores.TSE'
+            }
+]">
 
    <script type="text/ng-template" id="myModalContent.html">
       <div class="modal-header">
-         <h3 class="modal-title">I'm a modal!</h3>
+         <h3 class="modal-title">Application Details</h3>
       </div>
       <div class="modal-body">
-         <ul>
-            <li ng-repeat="item in items">
-               <a ng-click="selected.item = item">{{ item }}</a>
-            </li>
-         </ul>
-         Selected: <b>{{ selected.item }}</b>
+         <tabset justified="true">
+            <tab heading="Application">
+               <br>
+               <br>
+               <b>Full application:</b>
+               <br>
+               <div ng-repeat="n in fields">
+                  <div class="gradApplicationDetail" style="clear: both">
+                     <p data-ng-bind='n.disp+ ": " + getprop(gradApplication, n.field, "")'></p>
+                  </div>
+               </div>
+
+               <div class="gradApplicationFooter"></div>
+               <br>
+            </tab>
+            <tab heading="Percentile Charts">
+               <br>
+               <br>
+               <p><b>GRE and TOEFL score and subscore percentiles:</b></p>
+               <br>
+               <p> GRE Overall: 43.3% </p>
+               <p> GRE Math: 25.7% </p>
+               <p> GRE Reading: 70.3% </p>
+               <p> GRE Writing: 80.4% </p>
+
+               <br>
+
+               <p> TOEFL Overall: 54.0% </p>
+               <p> TOEFL Reading: 75.2% </p>
+               <p> TOEFL Listening: 27.7% </p>
+               <p> TOEFL Speaking: 99.3% </p>
+               <p> TOEFL Writing: 54.4% </p>
+
+            </tab>
+            <tab heading="Comments">
+               <br>
+               <br>
+               <b>Submit a Comment</b>
+
+               <div>
+                  Name:
+                     <input id='commentsName' type="text" value="Name">
+               </div>
+
+               <div>
+                  <textarea
+                        id='commentsBody'
+                        name="myComment"
+                        cols="50"
+                        rows="5"
+                     placeholder="Enter your comment here..."></textarea>
+               </div>
+
+               <input type="submit" class="btn btn-default">
+
+               <div id='submittedComments'> <!-- Prior Comments Area -->
+
+               </div>
+
+            </tab>
+         </tabset>
       </div>
       <div class="modal-footer">
-         <button class="btn btn-primary" ng-click="ok()">OK</button>
-         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+         <button class="btn btn-primary" ng-click="close()">Close</button>
       </div>
    </script>
 

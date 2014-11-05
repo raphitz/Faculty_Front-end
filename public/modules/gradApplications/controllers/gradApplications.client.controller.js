@@ -219,12 +219,16 @@
          };
 
          $scope.viewPage = function() {
-            //$location.path('gradApplications/' + this.gradApplication._id);
+            var application = this.gradApplication;
+
             $modal.open({
                templateUrl: 'myModalContent.html',
-               //controller: 'ModalInstanceCtrl',
+               controller: 'ModalInstanceCtrl',
                size: 'lg',
                resolve: {
+                  application: function () {
+                     return application;
+                  }
                }
             });
 
@@ -238,6 +242,14 @@
          //};
 
       }
-   ]);
+   ])
+   .controller('ModalInstanceCtrl', function ($scope, $modalInstance, application) {
+      $scope.application = application;
+
+      $scope.close = function () {
+         $modalInstance.dismiss('close');
+      };
+   })
+   ;
 
 }());
