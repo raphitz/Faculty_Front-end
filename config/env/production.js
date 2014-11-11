@@ -21,7 +21,7 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
 				'public/lib/pdfmake/build/pdfmake.min.js',
 				'public/lib/pdfmake/build/vfs_fonts.js',
-        'public/lib/sortable/js/sortable.js'
+        'public/lib/sortable/js/sortable.min.js'
 			]
 		},
 		css: [ 'public/dist/application.min.css' ],
