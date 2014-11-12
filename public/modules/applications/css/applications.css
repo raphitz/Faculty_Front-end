@@ -21,9 +21,8 @@
 	margin-bottom: 2px;
 	border: solid 0.5 px;
 	-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    border: hidden;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
 }
 .comments.name.submitted {
 	padding: 2px;
@@ -33,9 +32,9 @@
 	margin-bottom: 2px;
 	border: solid 0.5 px;
 	-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    float: right;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+   float: right;
 }
 .comments.body {
 	padding: 2px;
@@ -56,6 +55,6 @@
 	margin-bottom: 10px;
     border: hidden;
 }
-#comments {
+.comments {
 	margin-bottom: 10px;
 }
