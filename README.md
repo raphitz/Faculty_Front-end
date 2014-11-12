@@ -27,3 +27,8 @@ External dependencies
 ---------------------
 
 * MongoDB Server
+
+Running tests
+-------------
+
+1. `grunt test`
