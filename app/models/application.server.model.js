@@ -110,8 +110,8 @@ var addressSchema = new Schema({
     city: String,
     state: String,
     country: {
-        type: String,
-        enum: countryCodes
+        type: String
+        // TODO country codes
     },
     zip: String
 });
