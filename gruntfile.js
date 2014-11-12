@@ -65,6 +65,13 @@ module.exports = function(grunt) {
             src: watchFiles.clientCSS
          }
       },
+      browserify: {
+         dist: {
+            files: {
+               'public/dist/common.js': ['public/common.js'],
+            }
+         }
+      },
       uglify: {
          production: {
             options: {
@@ -152,7 +159,7 @@ module.exports = function(grunt) {
    });
 
    // Load NPM tasks
-   require('load-grunt-tasks')(grunt);
+   require('load-grunt-tasks')(grunt, {pattern: ['grunt-contrib-*', 'grunt-*']});
 
    // Making grunt default to force in order not to break the project.
    grunt.option('force', true);
