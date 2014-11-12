@@ -1,25 +1,25 @@
 'use strict';
 
 //Setting up route
-angular.module('gradApplications').config(['$stateProvider',
+angular.module('applications').config(['$stateProvider',
 	function($stateProvider) {
-		// GradApplications state routing
+		// Applications state routing
 		$stateProvider.
 		state('team', {
 			url: '/team',
-			templateUrl: 'modules/gradApplications/views/team.client.view.html'
+			templateUrl: 'modules/applications/views/team.client.view.html'
 		}).
-		state('listGradApplications', {
-			url: '/gradApplications',
-			templateUrl: 'modules/gradApplications/views/list-gradApplications.client.view.html'
+		state('listApplications', {
+			url: '/applications',
+			templateUrl: 'modules/applications/views/list-applications.client.view.html'
 		}).
-		state('createGradApplication', {
-			url: '/gradApplications/create',
-			templateUrl: 'modules/gradApplications/views/create-gradApplication.client.view.html'
+		state('createApplication', {
+			url: '/applications/create',
+			templateUrl: 'modules/applications/views/create-application.client.view.html'
 		}).
-		state('editGradApplication', {
-			url: '/gradApplications/:gradApplicationId/edit',
-			templateUrl: 'modules/gradApplications/views/edit-gradApplication.client.view.html'
+		state('editApplication', {
+			url: '/applications/:applicationId/edit',
+			templateUrl: 'modules/applications/views/edit-application.client.view.html'
 		});
 	}
 ]);

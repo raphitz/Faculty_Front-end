@@ -41,9 +41,9 @@ var addressSchema = new Schema({
 
 
 /**
- * GradApplication Schema
+ * Application Schema
  */
-var GradApplicationSchema = new Schema({
+var ApplicationSchema = new Schema({
 
     /**
      * Old application
@@ -464,4 +464,4 @@ var GradApplicationSchema = new Schema({
 
 });
 
-mongoose.model('GradApplication', GradApplicationSchema);
+mongoose.model('Application', ApplicationSchema);

@@ -8,7 +8,7 @@ var ApplicationConfiguration = (function() {
    //protractor
    // exports.config = {
    //    seleniumAddress: 'http://localhost:4444/wd/hub',
-   //    specs: ['./modules/gradApplications/tests/todo-spec.js']
+   //    specs: ['./modules/applications/tests/todo-spec.js']
    // };
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

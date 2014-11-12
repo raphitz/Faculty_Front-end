@@ -100,9 +100,9 @@
    }
 
 
-   // GradApplications controller
-   angular.module('gradApplications').controller('GradApplicationsController', ['$scope', '$stateParams', '$location', '$modal', 'Authentication', 'GradApplications',
-      function($scope, $stateParams, $location, $modal, Authentication, GradApplications ) {
+   // Applications controller
+   angular.module('applications').controller('ApplicationsController', ['$scope', '$stateParams', '$location', '$modal', 'Authentication', 'Applications',
+      function($scope, $stateParams, $location, $modal, Authentication, Applications ) {
 
 
          //Tabs
@@ -133,13 +133,13 @@
 
          // Download a PDF summarizing the application
          $scope.downloadPDF = function() {
-            var doc = generatePdfDoc(this.gradApplication);
+            var doc = generatePdfDoc(this.application);
             pdfMake.createPdf(doc).open();
          };
 
-         // Create new GradApplication
+         // Create new Application
          $scope.create = function() {
-            // Create new GradApplication object
+            // Create new Application object
 
             var PROPS_TO_COPY = [
                'personal_info.name.first',
@@ -166,11 +166,11 @@
                setprop(obj, prop, getprop(this,prop));
             }
 
-            var gradApplication = new GradApplications (obj);
+            var application = new Applications (obj);
 
             // Redirect after save
-            gradApplication.$save(function(response) {
-               $location.path('gradApplications/' + response._id);
+            application.$save(function(response) {
+               $location.path('applications/' + response._id);
 
                // Clear form fields
                $scope.name = '';
@@ -179,47 +179,47 @@
             });
          };
 
-         // Remove existing GradApplication
-         $scope.remove = function( gradApplication ) {
-            if ( gradApplication ) { gradApplication.$remove();
+         // Remove existing Application
+         $scope.remove = function( application ) {
+            if ( application ) { application.$remove();
 
-               for (var i in $scope.gradApplications ) {
-                  if ($scope.gradApplications [i] === gradApplication ) {
-                     $scope.gradApplications.splice(i, 1);
+               for (var i in $scope.applications ) {
+                  if ($scope.applications [i] === application ) {
+                     $scope.applications.splice(i, 1);
                   }
                }
             } else {
-               $scope.gradApplication.$remove(function() {
-                  $location.path('gradApplications');
+               $scope.application.$remove(function() {
+                  $location.path('applications');
                });
             }
          };
 
-         // Update existing GradApplication
+         // Update existing Application
          $scope.update = function() {
-            var gradApplication = $scope.gradApplication ;
+            var application = $scope.application ;
 
-            gradApplication.$update(function() {
-               $location.path('gradApplications/' + gradApplication._id);
+            application.$update(function() {
+               $location.path('applications/' + application._id);
             }, function(errorResponse) {
                $scope.error = errorResponse.data.message;
             });
          };
 
-         // Find a list of GradApplications
+         // Find a list of Applications
          $scope.find = function() {
-            $scope.gradApplications = GradApplications.query();
+            $scope.applications = Applications.query();
          };
 
-         // Find existing GradApplication
+         // Find existing Application
          $scope.findOne = function() {
-            $scope.gradApplication = GradApplications.get({ 
-               gradApplicationId: $stateParams.gradApplicationId
+            $scope.application = Applications.get({ 
+               applicationId: $stateParams.applicationId
             });
          };
 
          $scope.viewPage = function() {
-            var application = this.gradApplication;
+            var application = this.application;
 
             $modal.open({
                templateUrl: 'myModalContent.html',
@@ -234,10 +234,10 @@
 
          };
 
-               // Summarize an existing GradApplication
+               // Summarize an existing Application
          //summarize = function(gpa, gre) {
-         //	$scope.gradApplication = GradApplications.get({ 
-         //		gradApplicationId: $stateParams.gradApplicationId
+         //	$scope.application = Applications.get({ 
+         //		applicationId: $stateParams.applicationId
          //	});
          //};
 

@@ -2,18 +2,18 @@
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users');
-	var gradApplications = require('../../app/controllers/gradApplications');
+	var applications = require('../../app/controllers/applications');
 
-	// GradApplications Routes
-	app.route('/gradApplications')
-		.get(gradApplications.list)
-		.post(users.requiresLogin, gradApplications.create);
+	// Applications Routes
+	app.route('/applications')
+		.get(applications.list)
+		.post(users.requiresLogin, applications.create);
 
-	app.route('/gradApplications/:gradApplicationId')
-		.get(gradApplications.read)
-		.put(users.requiresLogin, gradApplications.hasAuthorization, gradApplications.update)
-		.delete(users.requiresLogin, gradApplications.hasAuthorization, gradApplications.delete);
+	app.route('/applications/:applicationId')
+		.get(applications.read)
+		.put(users.requiresLogin, applications.hasAuthorization, applications.update)
+		.delete(users.requiresLogin, applications.hasAuthorization, applications.delete);
 
-	// Finish by binding the GradApplication middleware
-	app.param('gradApplicationId', gradApplications.gradApplicationByID);
+	// Finish by binding the Application middleware
+	app.param('applicationId', applications.applicationByID);
 };

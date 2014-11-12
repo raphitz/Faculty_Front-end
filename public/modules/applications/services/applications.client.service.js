@@ -1,11 +1,11 @@
 'use strict';
 
-//GradApplications service used to communicate GradApplications REST endpoints
-angular.module('gradApplications').factory('GradApplications', ['$resource',
+//Applications service used to communicate Applications REST endpoints
+angular.module('applications').factory('Applications', ['$resource',
 	function($resource) {
 		return $resource(
-         'gradApplications/:gradApplicationId',
-         { gradApplicationId: '@_id' },
+         'applications/:applicationId',
+         { applicationId: '@_id' },
          {
             update: {
                method: 'PUT'

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gradApplications').controller('TeamController', ['$scope',
+angular.module('applications').controller('TeamController', ['$scope',
 	function($scope) {
 		// Team controller logic
 		// ...

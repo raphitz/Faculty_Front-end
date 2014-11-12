@@ -1,16 +1,16 @@
-.gradApplicationListing {
+.applicationListing {
    cursor: pointer;
 }
 
-.gradApplicationDetail .value {
+.applicationDetail .value {
    padding-left: .5em;
 }
 
-.gradApplicationDetail h1 {
+.applicationDetail h1 {
    float: left;
 }
 
-.gradApplicationFooter {
+.applicationFooter {
    clear: both;
 }
 .comments.name {

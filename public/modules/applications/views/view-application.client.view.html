@@ -1,4 +1,4 @@
-<section data-ng-controller="GradApplicationsController" data-ng-init="findOne(); fields = [
+<section data-ng-controller="ApplicationsController" data-ng-init="findOne(); fields = [
 				{
                disp: 'First Name',
                field: 'personal_info.name.first'
@@ -77,12 +77,12 @@
       <b> Full application: </b>
       <br>
    <div ng-repeat="n in fields">
-      <div class="gradApplicationDetail" style="clear: both">
-         <p data-ng-bind='n.disp+ ": " + getprop(gradApplication, n.field, "")'></p>
+      <div class="applicationDetail" style="clear: both">
+         <p data-ng-bind='n.disp+ ": " + getprop(application, n.field, "")'></p>
       </div>
    </div>
 
-   <div class="gradApplicationFooter"></div>
+   <div class="applicationFooter"></div>
 
 
 

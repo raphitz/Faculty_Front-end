@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-	// GradApplications Controller Spec
-	describe('GradApplications Controller Tests', function() {
+	// Applications Controller Spec
+	describe('Applications Controller Tests', function() {
 		// Initialize global variables
-		var GradApplicationsController,
+		var ApplicationsController,
 		scope,
 		$httpBackend,
 		$stateParams,
@@ -44,55 +44,55 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
-			// Initialize the GradApplications controller.
-			GradApplicationsController = $controller('GradApplicationsController', {
+			// Initialize the Applications controller.
+			ApplicationsController = $controller('ApplicationsController', {
 				$scope: scope
 			});
 		}));
 
-		it('$scope.find() should create an array with at least one GradApplication object fetched from XHR', inject(function(GradApplications) {
-			// Create sample GradApplication using the GradApplications service
-			var sampleGradApplication = new GradApplications({
-				name: 'New GradApplication'
+		it('$scope.find() should create an array with at least one Application object fetched from XHR', inject(function(Applications) {
+			// Create sample Application using the Applications service
+			var sampleApplication = new Applications({
+				name: 'New Application'
 			});
 
-			// Create a sample GradApplications array that includes the new GradApplication
-			var sampleGradApplications = [sampleGradApplication];
+			// Create a sample Applications array that includes the new Application
+			var sampleApplications = [sampleApplication];
 
 			// Set GET response
-			$httpBackend.expectGET('gradApplications').respond(sampleGradApplications);
+			$httpBackend.expectGET('applications').respond(sampleApplications);
 
 			// Run controller functionality
 			scope.find();
 			$httpBackend.flush();
 
 			// Test scope value
-			expect(scope.gradApplications).toEqualData(sampleGradApplications);
+			expect(scope.applications).toEqualData(sampleApplications);
 		}));
 
-		it('$scope.findOne() should create an array with one GradApplication object fetched from XHR using a gradApplicationId URL parameter', inject(function(GradApplications) {
-			// Define a sample GradApplication object
-			var sampleGradApplication = new GradApplications({
-				name: 'New GradApplication'
+		it('$scope.findOne() should create an array with one Application object fetched from XHR using a applicationId URL parameter', inject(function(Applications) {
+			// Define a sample Application object
+			var sampleApplication = new Applications({
+				name: 'New Application'
 			});
 
 			// Set the URL parameter
-			$stateParams.gradApplicationId = '525a8422f6d0f87f0e407a33';
+			$stateParams.applicationId = '525a8422f6d0f87f0e407a33';
 
 			// Set GET response
-			$httpBackend.expectGET(/gradApplications\/([0-9a-fA-F]{24})$/).respond(sampleGradApplication);
+			$httpBackend.expectGET(/applications\/([0-9a-fA-F]{24})$/).respond(sampleApplication);
 
 			// Run controller functionality
 			scope.findOne();
 			$httpBackend.flush();
 
 			// Test scope value
-			expect(scope.gradApplication).toEqualData(sampleGradApplication);
+			expect(scope.application).toEqualData(sampleApplication);
 		}));
 
-		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(GradApplications) {
-			// Create a sample GradApplication object
-			var sampleGradApplicationPostData = new GradApplications({
+		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(Applications) {
+			// Create a sample Application object
+			var sampleApplicationPostData = new Applications({
 				"personal_info": {
 					"name": {}
 				},
@@ -101,17 +101,17 @@
 				}
 			});
 
-			// Create a sample GradApplication response
-			var sampleGradApplicationResponse = new GradApplications({
+			// Create a sample Application response
+			var sampleApplicationResponse = new Applications({
 				_id: '525cf20451979dea2c000001',
-				name: 'New GradApplication'
+				name: 'New Application'
 			});
 
 			// Fixture mock form input values
-			scope.name = 'New GradApplication';
+			scope.name = 'New Application';
 
 			// Set POST response
-			$httpBackend.expectPOST('gradApplications', sampleGradApplicationPostData).respond(sampleGradApplicationResponse);
+			$httpBackend.expectPOST('applications', sampleApplicationPostData).respond(sampleApplicationResponse);
 
 			// Run controller functionality
 			scope.create();
@@ -120,49 +120,49 @@
 			// Test form inputs are reset
 			expect(scope.name).toEqual('');
 
-			// Test URL redirection after the GradApplication was created
-			expect($location.path()).toBe('/gradApplications/' + sampleGradApplicationResponse._id);
+			// Test URL redirection after the Application was created
+			expect($location.path()).toBe('/applications/' + sampleApplicationResponse._id);
 		}));
 
-		it('$scope.update() should update a valid GradApplication', inject(function(GradApplications) {
-			// Define a sample GradApplication put data
-			var sampleGradApplicationPutData = new GradApplications({
+		it('$scope.update() should update a valid Application', inject(function(Applications) {
+			// Define a sample Application put data
+			var sampleApplicationPutData = new Applications({
 				_id: '525cf20451979dea2c000001',
-				name: 'New GradApplication'
+				name: 'New Application'
 			});
 
-			// Mock GradApplication in scope
-			scope.gradApplication = sampleGradApplicationPutData;
+			// Mock Application in scope
+			scope.application = sampleApplicationPutData;
 
 			// Set PUT response
-			$httpBackend.expectPUT(/gradApplications\/([0-9a-fA-F]{24})$/).respond();
+			$httpBackend.expectPUT(/applications\/([0-9a-fA-F]{24})$/).respond();
 
 			// Run controller functionality
 			scope.update();
 			$httpBackend.flush();
 
 			// Test URL location to new object
-			expect($location.path()).toBe('/gradApplications/' + sampleGradApplicationPutData._id);
+			expect($location.path()).toBe('/applications/' + sampleApplicationPutData._id);
 		}));
 
-		it('$scope.remove() should send a DELETE request with a valid gradApplicationId and remove the GradApplication from the scope', inject(function(GradApplications) {
-			// Create new GradApplication object
-			var sampleGradApplication = new GradApplications({
+		it('$scope.remove() should send a DELETE request with a valid applicationId and remove the Application from the scope', inject(function(Applications) {
+			// Create new Application object
+			var sampleApplication = new Applications({
 				_id: '525a8422f6d0f87f0e407a33'
 			});
 
-			// Create new GradApplications array and include the GradApplication
-			scope.gradApplications = [sampleGradApplication];
+			// Create new Applications array and include the Application
+			scope.applications = [sampleApplication];
 
 			// Set expected DELETE response
-			$httpBackend.expectDELETE(/gradApplications\/([0-9a-fA-F]{24})$/).respond(204);
+			$httpBackend.expectDELETE(/applications\/([0-9a-fA-F]{24})$/).respond(204);
 
 			// Run controller functionality
-			scope.remove(sampleGradApplication);
+			scope.remove(sampleApplication);
 			$httpBackend.flush();
 
 			// Test array after successful delete
-			expect(scope.gradApplications.length).toBe(0);
+			expect(scope.applications.length).toBe(0);
 		}));
 	});
 }());

@@ -6,17 +6,17 @@
 var should = require('should'),
    mongoose = require('mongoose'),
    User = mongoose.model('User'),
-   GradApplication = mongoose.model('GradApplication');
+   Application = mongoose.model('Application');
 
 /**
  * Globals
  */
-var user, gradApplication, gradApplicationDup;
+var user, application, applicationDup;
 
 /**
  * Unit tests
  */
-describe('GradApplication Model Unit Tests:', function() {
+describe('Application Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
 			firstName: 'Full',
@@ -28,12 +28,12 @@ describe('GradApplication Model Unit Tests:', function() {
 		});
 
 		user.save(function() { 
-			gradApplication = new GradApplication({
-				name: 'GradApplication Name',
+			application = new Application({
+				name: 'Application Name',
 				user: user
 			});
-			gradApplicationDup = new GradApplication({
-				name: 'GradApplication Name2',
+			applicationDup = new Application({
+				name: 'Application Name2',
 				user: user
 			});
 			done();
@@ -42,7 +42,7 @@ describe('GradApplication Model Unit Tests:', function() {
 
 	describe('Method Save', function() {
 		it('should be able to save an incomplete application', function(done) {
-			return gradApplication.save(function(err) {
+			return application.save(function(err) {
 				should.not.exist(err);
 				done();
 			});
@@ -50,9 +50,9 @@ describe('GradApplication Model Unit Tests:', function() {
 
 		//id is not of proper length
 		it('should not be able to save an application with an invalid id: 123-123', function(done) { 
-			gradApplication.personal_info.UFID = '123-123';
+			application.personal_info.UFID = '123-123';
 
-			return gradApplication.save(function(err) {
+			return application.save(function(err) {
 				should.exist(err);
 				done();
 			});
@@ -60,20 +60,20 @@ describe('GradApplication Model Unit Tests:', function() {
 
 		//id is alphanumeric
 		it('should not be able to save an application with an invalid id: 123A-1234', function(done) { 
-			gradApplication.personal_info.UFID = '123A-1234';
+			application.personal_info.UFID = '123A-1234';
 
-			return gradApplication.save(function(err) {
+			return application.save(function(err) {
 				should.exist(err);
 				done();
 			});
 		});
 
 		it('should not be able to save more than one application for one student: id:1234-1234', function(done) { 
-   			gradApplication.personal_info.UFID = '1234-1234';
-   			gradApplication.save(function(err) {
+   			application.personal_info.UFID = '1234-1234';
+   			application.save(function(err) {
     			should.not.exist(err);
-    			gradApplicationDup.personal_info.UFID = '1234-1234';
-    			return gradApplicationDup.save(function(err) { //tries to save an application with dup UFID
+    			applicationDup.personal_info.UFID = '1234-1234';
+    			return applicationDup.save(function(err) { //tries to save an application with dup UFID
        			should.exist(err);
        			done();
     			});
@@ -89,7 +89,7 @@ describe('GradApplication Model Unit Tests:', function() {
 	// });
 
 	afterEach(function(done) { 
-		GradApplication.remove().exec();
+		Application.remove().exec();
 		User.remove().exec();
 		done();
 	});

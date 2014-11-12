@@ -7,102 +7,102 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors'),
-	GradApplication = mongoose.model('GradApplication'),
+	Application = mongoose.model('Application'),
 	_ = require('lodash');
 
 /**
- * Create a GradApplication
+ * Create a Application
  */
 exports.create = function(req, res) {
 	console.log(req.body);
-	var gradApplication = new GradApplication(req.body);
-	gradApplication.user = req.user;
+	var application = new Application(req.body);
+	application.user = req.user;
 
-	gradApplication.save(function(err) {
+	application.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(gradApplication);
+			res.jsonp(application);
 		}
 	});
 };
 
 /**
- * Show the current GradApplication
+ * Show the current Application
  */
 exports.read = function(req, res) {
-	res.jsonp(req.gradApplication);
+	res.jsonp(req.application);
 };
 
 /**
- * Update a GradApplication
+ * Update a Application
  */
 exports.update = function(req, res) {
-	var gradApplication = req.gradApplication ;
+	var application = req.application ;
 
-	gradApplication = _.extend(gradApplication , req.body);
+	application = _.extend(application , req.body);
 
-	gradApplication.save(function(err) {
+	application.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(gradApplication);
+			res.jsonp(application);
 		}
 	});
 };
 
 /**
- * Delete an GradApplication
+ * Delete an Application
  */
 exports.delete = function(req, res) {
-	var gradApplication = req.gradApplication ;
+	var application = req.application ;
 
-	gradApplication.remove(function(err) {
+	application.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(gradApplication);
+			res.jsonp(application);
 		}
 	});
 };
 
 /**
- * List of GradApplications
+ * List of Applications
  */
 exports.list = function(req, res) { 
-	GradApplication.find().sort('-created').populate('user', 'displayName').exec(function(err, gradApplications) {
+	Application.find().sort('-created').populate('user', 'displayName').exec(function(err, applications) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		}else {
-			res.jsonp(gradApplications);
+			res.jsonp(applications);
 		}
 	});
 };
 
 /**
- * GradApplication middleware
+ * Application middleware
  */
-exports.gradApplicationByID = function(req, res, next, id) { GradApplication.findById(id).populate('user', 'displayName').exec(function(err, gradApplication) {
+exports.applicationByID = function(req, res, next, id) { Application.findById(id).populate('user', 'displayName').exec(function(err, application) {
 		if (err) return next(err);
-		if (! gradApplication) return next(new Error('Failed to load GradApplication ' + id));
-		req.gradApplication = gradApplication ;
+		if (! application) return next(new Error('Failed to load Application ' + id));
+		req.application = application ;
 		next();
 	});
 };
 
 /**
- * GradApplication authorization middleware
+ * Application authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.gradApplication.user.id !== req.user.id) {
+	if (req.application.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();
