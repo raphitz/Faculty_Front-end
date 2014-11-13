@@ -7,11 +7,60 @@ var mongoose = require('mongoose'),
    Schema = mongoose.Schema;
 
 var countryList = ['../../public/lib/angularjs-country-select/angular.country-select.js'.countries, ''];
-var stateList = ['', ' ', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District Of Columbia', 'Florida',
-            'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
-            'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
-            'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
-            'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+var stateList = [
+    "AL"
+    , "AK"
+    , "AZ"
+    , "AR"
+    , "CA"
+    , "CO"
+    , "CT"
+    , "DE"
+    , "DC"
+    , "FL"
+    , "GA"
+    , "HI"
+    , "ID"
+    , "IL"
+    , "IN"
+    , "IA"
+    , "KS"
+    , "KY"
+    , "LA"
+    , "ME"
+    , "MD"
+    , "MA"
+    , "MI"
+    , "MN"
+    , "MS"
+    , "MO"
+    , "MT"
+    , "NE"
+    , "NV"
+    , "NH"
+    , "NJ"
+    , "NM"
+    , "NY"
+    , "NC"
+    , "ND"
+    , "OH"
+    , "OK"
+    , "OR"
+    , "PA"
+    , "RI"
+    , "SC"
+    , "SD"
+    , "TN"
+    , "TX"
+    , "UT"
+    , "VT"
+    , "VA"
+    , "WA"
+    , "WV"
+    , "WI"
+    , "WY"
+];
 
 var suffixEnum = [
    '',
@@ -98,7 +147,7 @@ var ssnMatch = [/^[0-9]{3}(-[0-9]{2}-|[0-9]{2})[0-9]{4}$/, 'SSN must be 3 digits
 var nameMatch = [/^[A-z-'']*$/, 'Valid names may only contain letters A to Z (upper and lowercase, ASCII only), hyphens, and apostrophes.'];
 ////////////////////////////////////////////////////////////////////////////////////////
 
-var ufidMatch = [/^[0-9]{4}-?[0-9]{4}$/, 'UFID must be 8 digits, middle hyphen optional'];
+var ufidMatch = [/^([0-9]{4}-?[0-9]{4})?$/, 'UFID must be 8 digits, middle hyphen optional'];
 var phoneMatch = [/^[0-9]{3}-?[0-9]{3}-?[0-9]{4}$/, 'Phone numbers must be 10 digits, hyphens optional'];
 var emailMatch = [/.+\@.+\..+/, 'Invalid email address'];
 var streetMatch = [/^[A-z 0-9#]*$/, 'Street address may only contain alphanumeric characters, spaces, and (#)'];
@@ -122,7 +171,7 @@ var _phoneBase = {
     }, // Phone numbers can be weird. Store as string, not number.
     domesticity: {
         type: String,
-        enum: [null, 'US', 'Intl']
+        enum: ['U.S.', 'Intl']
     }
 };
 
@@ -192,12 +241,6 @@ var ApplicationSchema = new Schema({
          // not stored in the database.
          match: ssnMatch
       },
-      UFID: {
-         type: String,
-         default: '',
-         match: /^(\d{4}-\d{4})?$/,
-         unique: true
-      },
       previous_application: Boolean,
       previous_attendance: Boolean,
       application_started: Boolean,
@@ -233,7 +276,7 @@ var ApplicationSchema = new Schema({
       },
 
       ethnicity: {
-         hispanic: Boolean,
+         hispanic: Boolean, // TODO!!! may also be NULL (i.e. not specified)
          specifics: {
             'amer_indian_or_alaska': Boolean, // American Indian or Alaska Native
             'asian': Boolean, // Asian
@@ -320,27 +363,24 @@ var ApplicationSchema = new Schema({
          phone: {
             personal: {
               number: {type: String, match: phoneMatch},
-              us: String,
-              intl: String
+               call: String
             },
 
             work: {
               number: {type: String, match: phoneMatch},
-              us: String,
-              intl: String
+              call: String
             },
 
             cell: {
               number: {type: String, match: phoneMatch},
-              us: String,
-              intl: String
+              call: String
             }
          }
       },
       veteran_status: {
-         active_veteran: Boolean,
-         post_sep11: Boolean,
-         eligible_va_benefits: Boolean
+         active_veteran: Boolean, // TODO may be null
+         post_sep11: Boolean, // TODO may be null
+         eligible_va_benefits: Boolean // TODO may be null
       },
       conduct_disclosure: {
          charged_or_disciplined: Boolean,
@@ -349,6 +389,8 @@ var ApplicationSchema = new Schema({
    },
    special_programs_info: {
       special_programs_application: {
+         // TODO This section needs to be changed to match the actual
+         // application
          famu_feeder: {
             type: String,
             enum: scholarshipEnum
@@ -423,6 +465,10 @@ var ApplicationSchema = new Schema({
             min: 0,
             max: 4
          },
+         
+         // TODO maximums for these is 999
+         // TODO require integers
+         // TODO minimum zero
          A: Number,
          A_minus: Number,
          B_plus: Number,
@@ -502,6 +548,7 @@ var ApplicationSchema = new Schema({
          uf_lang_institute_program: Boolean
       },
       activities: {
+         // TODO make this an array of objects.
          activity: String,
          city: String,
          state: {
