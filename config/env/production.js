@@ -7,7 +7,7 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-        'public/lib/sortable/css/sortable-theme-bootstrap.css'
+				'public/lib/ng-table/ng-table.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
@@ -21,7 +21,7 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
 				'public/lib/pdfmake/build/pdfmake.min.js',
 				'public/lib/pdfmake/build/vfs_fonts.js',
-        'public/lib/sortable/js/sortable.min.js'
+				'public/lib/ng-table/ng-table.min.js'
 			]
 		},
 		css: [ 'public/dist/application.min.css' ],

@@ -16,6 +16,6 @@
     "angular-ui-router": "~0.2.10",
     "nsPopover": "~0.5.8",
     "pdfmake": "bpampuch/pdfmake#>=0.1.10",
-    "sortable": "~0.6.0"
+    "ng-table": "~0.3.3"
   }
 }
