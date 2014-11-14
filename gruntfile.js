@@ -36,7 +36,7 @@ module.exports = function(grunt) {
          },
          clientJS: {
             files: watchFiles.clientJS,
-            tasks: ['jshint'],
+            tasks: ['jshint', 'browserify'],
             options: {
                livereload: true
             }
@@ -121,8 +121,8 @@ module.exports = function(grunt) {
          }
       },
       concurrent: {
-         default: ['nodemon', 'watch'],
-         debug: ['nodemon', 'watch', 'node-inspector'],
+         default: ['browserify', 'nodemon', 'watch'],
+         debug: ['browserify', 'nodemon', 'watch', 'node-inspector'],
          options: {
             logConcurrentOutput: true
          }

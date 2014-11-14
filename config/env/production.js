@@ -21,7 +21,8 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
 				'public/lib/pdfmake/build/pdfmake.min.js',
 				'public/lib/pdfmake/build/vfs_fonts.js',
-				'public/lib/ng-table/ng-table.min.js'
+				'public/lib/ng-table/ng-table.min.js',
+				'public/dist/browserify.min.js'
 			]
 		},
 		css: [ 'public/dist/application.min.css' ],
