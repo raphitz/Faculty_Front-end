@@ -129,22 +129,25 @@
       </div>
    </script>
 
-    <div class="page-header">
-        <h1>Existing Graduate Applications</h1>
-    </div>
+   <div class="page-header">
+       <h1>Your Assigned Graduate Applications</h1>
+   </div>
 
-    <table ng-table border=2 cellpadding=8 cellspacing=3>
-	   <tr data-ng-repeat="application in applications" data-ng-href="#!/applications/{{application._id}}" data-ng-click="viewPage()" class="applicationListing">
-	      <td data-title="'Name'">{{application.personal_info.name.first}} {{application.personal_info.name.last}}</td>
-	      <td data-title="'UFID'">{{application.ufid}}</td>
-	      <td data-title="'GPA'">{{application.education_and_activities.self_reported_gpa.GPA}}</td>
-	      <td data-title="'GRE'">{{application.education_and_activities.test_scores.gre.total}}</td>
-	      <td data-title="'TOEFL'">{{application.education_and_activities.test_scores.toefl.total}}</td>
-	      <td data-title="'DOB'">{{application.personal_info.dob}}</td>
-	      <td data-title="'Nation of Citizenship'">{{application.personal_info.nationality}}</td>
-	   </tr>
-    </table>
-    <div class="alert alert-warning text-center" data-ng-hide="!applications.$resolved || applications.length">
-    	No Grad Applications yet, why don't you <a href="/#!/applications/create">create one</a>?
-    </div>
+   <div>
+      <table ng-table border=2 cellpadding=8 cellspacing=3>
+         <tr data-ng-repeat="application in applications" data-ng-href="#!/applications/{{application._id}}" data-ng-click="viewPage()" class="applicationListing">
+            <td data-title="'Name'">{{application.personal_info.name.first}} {{application.personal_info.name.last}}</td>
+            <td data-title="'UFID'">{{application.ufid}}</td>
+            <td data-title="'GPA'">{{application.education_and_activities.self_reported_gpa.GPA}}</td>
+            <td data-title="'GRE'">{{application.education_and_activities.test_scores.gre.total}}</td>
+            <td data-title="'TOEFL'">{{application.education_and_activities.test_scores.toefl.total}}</td>
+            <td data-title="'DOB'">{{application.personal_info.dob}}</td>
+            <td data-title="'Nation of Citizenship'">{{application.personal_info.nationality}}</td>
+         </tr>
+      </table>
+   </div>
+
+   <div class="alert alert-warning text-center" data-ng-hide="!applications.$resolved || applications.length">
+      You have not yet been assigned any graduate applications.
+   </div>
 </section>
