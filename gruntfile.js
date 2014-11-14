@@ -6,7 +6,7 @@ module.exports = function(grunt) {
       serverViews: ['app/views/**/*.*'],
       serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
       clientViews: ['public/modules/**/views/**/*.html'],
-      clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
+      clientJS: ['public/js/*.js', 'public/modules/**/*.js', 'public/browserify.js'],
       clientCSS: ['public/modules/**/*.css'],
       mochaTests: ['app/tests/**/*.js']
    };
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
       browserify: {
          dist: {
             files: {
-               'public/dist/common.js': ['public/common.js'],
+               'public/dist/browserify.js': ['public/browserify.js'],
             }
          }
       },
@@ -78,7 +78,8 @@ module.exports = function(grunt) {
                mangle: false
             },
             files: {
-               'public/dist/application.min.js': 'public/dist/application.js'
+               'public/dist/application.min.js': 'public/dist/application.js',
+               'public/dist/browserify.min.js': 'public/dist/browserify.js'
             }
          }
       },
@@ -183,7 +184,7 @@ module.exports = function(grunt) {
    grunt.registerTask('lint', ['jshint', 'csslint']);
 
    // Build task(s).
-   grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
+   grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'browserify', 'uglify', 'cssmin']);
 
    // Test task.
    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit', 'phantom:run', 'protractor:run']);
