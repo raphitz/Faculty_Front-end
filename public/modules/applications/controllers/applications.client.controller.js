@@ -222,7 +222,7 @@
             var application = this.application;
 
             $modal.open({
-               templateUrl: 'myModalContent.html',
+               templateUrl: 'modules/applications/templates/single-application.html',
                controller: 'ModalInstanceCtrl',
                size: 'lg',
                resolve: {
