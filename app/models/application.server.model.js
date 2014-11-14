@@ -9,57 +9,57 @@ var mongoose = require('mongoose'),
 var countryList = ['../../public/lib/angularjs-country-select/angular.country-select.js'.countries, ''];
 
 var stateList = [
-    "AL"
-    , "AK"
-    , "AZ"
-    , "AR"
-    , "CA"
-    , "CO"
-    , "CT"
-    , "DE"
-    , "DC"
-    , "FL"
-    , "GA"
-    , "HI"
-    , "ID"
-    , "IL"
-    , "IN"
-    , "IA"
-    , "KS"
-    , "KY"
-    , "LA"
-    , "ME"
-    , "MD"
-    , "MA"
-    , "MI"
-    , "MN"
-    , "MS"
-    , "MO"
-    , "MT"
-    , "NE"
-    , "NV"
-    , "NH"
-    , "NJ"
-    , "NM"
-    , "NY"
-    , "NC"
-    , "ND"
-    , "OH"
-    , "OK"
-    , "OR"
-    , "PA"
-    , "RI"
-    , "SC"
-    , "SD"
-    , "TN"
-    , "TX"
-    , "UT"
-    , "VT"
-    , "VA"
-    , "WA"
-    , "WV"
-    , "WI"
-    , "WY"
+    'AL',
+    'AK',
+    'AZ',
+    'AR',
+    'CA',
+    'CO',
+    'CT',
+    'DE',
+    'DC',
+    'FL',
+    'GA',
+    'HI',
+    'ID',
+    'IL',
+    'IN',
+    'IA',
+    'KS',
+    'KY',
+    'LA',
+    'ME',
+    'MD',
+    'MA',
+    'MI',
+    'MN',
+    'MS',
+    'MO',
+    'MT',
+    'NE',
+    'NV',
+    'NH',
+    'NJ',
+    'NM',
+    'NY',
+    'NC',
+    'ND',
+    'OH',
+    'OK',
+    'OR',
+    'PA',
+    'RI',
+    'SC',
+    'SD',
+    'TN',
+    'TX',
+    'UT',
+    'VT',
+    'VA',
+    'WA',
+    'WV',
+    'WI',
+    'WY'
 ];
 
 var suffixEnum = [
@@ -637,7 +637,7 @@ mongoose.model('Application', ApplicationSchema);
 //short for null_or_undefined, returns true if "empty"
 //    (qualification for "empty" might expand)
 var dne = function(immavar) {
-   return immavar == undefined;
+   return immavar === null || immavar === undefined;
 };
 
 //COMPLETION PERCENT UPDATER
