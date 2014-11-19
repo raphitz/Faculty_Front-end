@@ -1,4 +1,9 @@
-.applicationListing {
+.application-listing {
+   background-color: red;
+   overflow-x: auto;
+}
+
+.application-row {
    cursor: pointer;
 }
 

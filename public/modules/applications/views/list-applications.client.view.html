@@ -1,61 +1,35 @@
-<section data-ng-controller="ApplicationsController" data-ng-init="find(); fields = [
-				{
-               disp: 'First Name',
-               field: 'personal_info.name.first'
-            },
-				{
-               disp: 'Self-reported unweighted GPA',
-               field: 'education_and_activities.self_reported_GPA'
-            },
-				{
-               disp: 'FE Exam Score',
-               field: 'education_and_activities.test_scores.FE'
-            },
-				{
-               disp: 'GMAT Exam Score',
-               field: 'education_and_activities.test_scores.GMAT'
-            },
-				{
-               disp: 'GRE Exam Score',
-               field: 'education_and_activities.test_scores.GRE'
-            },
-				{
-               disp: 'IELTS Exam Score',
-               field: 'education_and_activities.test_scores.IELTS'
-            },
-				{
-               disp: 'MELAB Exam Score',
-               field: 'education_and_activities.test_scores.MELAB'
-            },
-				{
-               disp: 'TOEFL Exam Score',
-               field: 'education_and_activities.test_scores.TOEFL'
-            },
-				{
-               disp: 'TSE Exam Score',
-               field: 'education_and_activities.test_scores.TSE'
-            }
-]">
+<section data-ng-controller="ApplicationsController" data-ng-init="find();">
 
    <div class="page-header">
        <h1>Your Assigned Graduate Applications</h1>
    </div>
 
-   <div>
-      <table ng-table border=2 cellpadding=8 cellspacing=3>
-         <tr data-ng-repeat="application in applications" data-ng-href="#!/applications/{{application._id}}" data-ng-click="viewPage()" class="applicationListing">
-            <td data-title="'Name'">{{application.personal_info.name.first}} {{application.personal_info.name.last}}</td>
-            <td data-title="'UFID'">{{application.ufid}}</td>
-            <td data-title="'GPA'">{{application.education_and_activities.self_reported_gpa.GPA}}</td>
-            <td data-title="'GRE'">{{application.education_and_activities.test_scores.gre.total}}</td>
-            <td data-title="'TOEFL'">{{application.education_and_activities.test_scores.toefl.total}}</td>
-            <td data-title="'DOB'">{{application.personal_info.dob}}</td>
-            <td data-title="'Nation of Citizenship'">{{application.personal_info.nationality}}</td>
-         </tr>
-      </table>
-   </div>
-
    <div class="alert alert-warning text-center" data-ng-hide="!applications.$resolved || applications.length">
       You have not yet been assigned any graduate applications.
    </div>
+
+   <div data-ng-show="!applications.$resolved">
+      Loading applications...
+   </div>
+
+   <div class="application-portal" data-ng-show="applications.$resolved">
+      <div class="application-controls">
+         <input type="button" value="Configure Columns" data-ng-click="configColumns()">
+      </div>
+
+      <div class="application-listing">
+         <table ng-table border=2 cellpadding=8 cellspacing=3>
+            <tr data-ng-repeat="application in applications" data-ng-href="#!/applications/{{application._id}}" data-ng-click="viewPage()" class="application-row">
+               <td data-title="'Name'">{{application.personal_info.name.first}} {{application.personal_info.name.last}}</td>
+               <td data-title="'UFID'">{{application.ufid}}</td>
+               <td data-title="'GPA'">{{application.education_and_activities.self_reported_gpa.GPA}}</td>
+               <td data-title="'GRE'">{{application.education_and_activities.test_scores.gre.total}}</td>
+               <td data-title="'TOEFL'">{{application.education_and_activities.test_scores.toefl.total}}</td>
+               <td data-title="'DOB'">{{application.personal_info.dob}}</td>
+               <td data-title="'Nation of Citizenship'">{{application.personal_info.nationality}}</td>
+            </tr>
+         </table>
+      </div>
+   </div>
+
 </section>
