@@ -9,24 +9,38 @@
    </div>
 
    <div data-ng-show="!applications.$resolved">
-      Loading applications...
+      <div class="progress">
+         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            Loading applications...
+         </div>
+      </div>
    </div>
 
    <div class="application-portal" data-ng-show="applications.$resolved">
-      <div class="application-controls">
+      <div class="application-controls well">
          <input type="button" value="Configure Columns" data-ng-click="configColumns()">
       </div>
 
       <div class="application-listing">
          <table ng-table border=2 cellpadding=8 cellspacing=3>
-            <tr data-ng-repeat="application in applications" data-ng-href="#!/applications/{{application._id}}" data-ng-click="viewPage()" class="application-row">
-               <td data-title="'Name'">{{application.personal_info.name.first}} {{application.personal_info.name.last}}</td>
-               <td data-title="'UFID'">{{application.ufid}}</td>
-               <td data-title="'GPA'">{{application.education_and_activities.self_reported_gpa.GPA}}</td>
-               <td data-title="'GRE'">{{application.education_and_activities.test_scores.gre.total}}</td>
-               <td data-title="'TOEFL'">{{application.education_and_activities.test_scores.toefl.total}}</td>
-               <td data-title="'DOB'">{{application.personal_info.dob}}</td>
-               <td data-title="'Nation of Citizenship'">{{application.personal_info.nationality}}</td>
+            <thead>
+               <tr>
+                  <th
+                     data-ng-repeat="column in columns"
+                     data-ng-show="column.visible">{{column.name}}</th>
+               </tr>
+            </thead>
+            <tr
+               data-ng-repeat="application in applications"
+               data-ng-href="#!/applications/{{application._id}}"
+               data-ng-click="viewPage()"
+               class="application-row">
+               <td
+                  data-ng-repeat="column in columns"
+                  data-ng-attr-data-title="{{column.name}}"
+                  data-ng-show="column.visible">
+                  {{getColumnValueForApplication(column, application)}}
+               </td>
             </tr>
          </table>
       </div>

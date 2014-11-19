@@ -1,5 +1,4 @@
 .application-listing {
-   background-color: red;
    overflow-x: auto;
 }
 
@@ -62,4 +61,24 @@
 }
 .comments {
 	margin-bottom: 10px;
+}
+
+/* Column Selector */
+
+.columnSelectorTable {
+   width: 100%;
+}
+
+.columnSelectorTable tr td, .columnSelectorTable tr th {
+   border: 1px solid black;
+   padding: 5px;
+}
+
+.columnSelectorTable thead *,
+.columnSelectorTable tbody tr td:last-child {
+   text-align: center;
+}
+
+.columnSelectorTable tr > *:first-child {
+   width: 100%;
 }

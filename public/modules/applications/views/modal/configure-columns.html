@@ -1,0 +1,26 @@
+<div class="modal-header">
+   <h3 class="modal-title">Configure Columns</h3>
+</div>
+<div class="modal-body">
+   <table class='columnSelectorTable'>
+      <thead>
+         <tr>
+            <th class='columnHeader'>Column Name</th>
+            <th class='enabledHeader'>Enabled</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr data-ng-repeat="column in $parent.columns">
+            <td>
+               {{column.name}}
+            </td>
+            <td>
+               <input type='checkbox' data-ng-model="column.visible">
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+<div class="modal-footer">
+   <button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

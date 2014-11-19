@@ -1,141 +1,66 @@
 'use strict';
 
 (function() {
+
+
    
-   function generatePdfDoc(app) {
-      function p(prop) {
-         var value = getprop(app, prop, '');
-         if (value === undefined) {
-            return '';
-         }
-         return ''+value;
-      }
-
-      function country(prop) {
-         var code = getprop(app, prop, undefined);
-         if (code === '') {
-            return '';
-         }
-         return ApplicationConfiguration.countriesByCode[code];
-      }
-
-      var testScores = [
-         ['FE',    p('education_and_activities.test_scores.FE')],
-         ['GMAT',  p('education_and_activities.test_scores.GMAT')],
-         ['GRE',   p('education_and_activities.test_scores.GRE')],
-         ['IELTS', p('education_and_activities.test_scores.IELTS')],
-         ['MELAB', p('education_and_activities.test_scores.MELAB')],
-         ['TOEFL', p('education_and_activities.test_scores.TOEFL')],
-         ['TSE',   p('education_and_activities.test_scores.TSE')],
-      ];
-
-      var name = p('personal_info.name.first') + ' ' + p('personal_info.name.last');
-
-      var dd = {
-         content: [
-            { text: 'Graduate Application for ' + name, style: 'header' },
-            '',
-            { text: 'Personal Info', style: 'subheader' },
-            {
-               style: 'tableExample',
-               table: {
-                  body: [
-                     ['First Name', 'Middle Name', 'Last Name'],
-                     [p('personal_info.name.first'), p('personal_info.name.middle'), p('personal_info.name.last')]
-                  ]
-               }
-            },
-            {
-               style: 'tableExample',
-               table: {
-                  body: [
-                     ['UFID', p('personal_info.UFID')],
-                     [
-                        'Nation of citizenship',
-                        country('personal_info.nation_of_citizenship')
-                     ]
-                  ]
-               }
-            },
-            { text: 'Education and activities', style: 'subheader' },
-            { text: 'Test scores', style: 'subsubheader' },
-            {
-               style: 'tableExample',
-               table: {
-                     body: testScores
-               }
-            }
-         ],
-         styles: {
-            header: {
-               fontSize: 18,
-               bold: true,
-               margin: [0, 0, 0, 10]
-            },
-            subheader: {
-               fontSize: 16,
-               bold: true,
-               margin: [0, 10, 0, 5]
-            },
-            subsubheader: {
-               fontSize: 13,
-               bold: true,
-               margin: [0, 10, 0, 5]
-            },
-            tableExample: {
-               margin: [0, 5, 0, 15]
-            },
-            tableHeader: {
-               bold: true,
-               fontSize: 13,
-               color: 'black'
-            }
-         },
-         defaultStyle: {
-            // alignment: 'justify'
-         }
-         
-      };
-      return dd;
-   }
-
-
    // Applications controller
    angular.module('applications').controller('ApplicationsController', ['$scope', '$stateParams', '$location', '$modal', 'Authentication', 'Applications',
       function($scope, $stateParams, $location, $modal, Authentication, Applications ) {
 
+         function columnSpecShorthand() {
+            var name, shortname, producer;
+            var VISIBLE_BY_DEFAULT = [
+               'Name'
+            ];
+            if (arguments.length === 2) {
+               name = shortname = arguments[0];
+               producer = arguments[1];
+            }
+            if (arguments.length === 3) {
+               name = arguments[0];
+               shortname = arguments[1];
+               producer = arguments[2];
+            }
 
-         //Tabs
+            return {
+               name: name,
+               shortname: shortname,
+               producer: producer,
+               visible: VISIBLE_BY_DEFAULT.indexOf(name) !== -1
+            };
+         }
 
-      
-        $scope.tabs = [
-          { title:'Dynamic Title 1', content:'Dynamic content 1' },
-          { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-        ];
+         $scope.columns = [
+            columnSpecShorthand(
+               'Name',
+               function() {
+                  return this.personal_info.name.first + " " + this.personal_info.name.last;
+               }
+            ),
+            columnSpecShorthand(
+               'First Name',
+               function() {
+                  return this.personal_info.name.first;
+               }
+            ),
+            columnSpecShorthand(
+               'Last Name',
+               function() {
+                  return this.personal_info.name.last;
+               }
+            ),
+         ];
 
-        $scope.alertMe = function() {
-          setTimeout(function() {
-            alert('You\'ve selected the alert tab!');
-          });
-        };
-      
-
-         //End of tabs functions
-
-
-
+         $scope.getColumnValueForApplication = function(column, application) {
+            return column.producer.call(application);
+         };
          
          $scope.getprop = getprop;
 
          $scope.authentication = Authentication;
 
          $scope.countries = ApplicationConfiguration.countries;
-
-         // Download a PDF summarizing the application
-         $scope.downloadPDF = function() {
-            var doc = generatePdfDoc(this.application);
-            pdfMake.createPdf(doc).open();
-         };
 
          // Create new Application
          $scope.create = function() {
@@ -222,7 +147,7 @@
             var application = this.application;
 
             $modal.open({
-               templateUrl: 'modules/applications/templates/single-application.html',
+               templateUrl: 'modules/applications/views/modal/single-application.html',
                controller: 'ModalInstanceCtrl',
                size: 'lg',
                resolve: {
@@ -234,17 +159,31 @@
 
          };
 
-               // Summarize an existing Application
-         //summarize = function(gpa, gre) {
-         //	$scope.application = Applications.get({ 
-         //		applicationId: $stateParams.applicationId
-         //	});
-         //};
+         $scope.configColumns = function() {
+            $modal.open({
+               templateUrl: 'modules/applications/views/modal/configure-columns.html',
+               controller: 'ColumnSelectorController',
+               size: 'sm',
+               scope: $scope,
+               resolve: {
+               }
+            });
+         };
 
       }
    ])
    .controller('ModalInstanceCtrl', function ($scope, $modalInstance, application) {
       $scope.application = application;
+
+      $scope.close = function () {
+         $modalInstance.dismiss('close');
+      };
+   })
+   .controller('ColumnSelectorController', function($scope, $modalInstance, $window) {
+      
+      $scope.updateColumns = function() {
+         $window.alert('woo');
+      };
 
       $scope.close = function () {
          $modalInstance.dismiss('close');
