@@ -21,13 +21,19 @@
          <input type="button" value="Configure Columns" data-ng-click="configColumns()">
       </div>
 
+      <script type="text/ng-template" id="nopager">
+      </script>
+
       <div class="application-listing">
-         <table ng-table border=2 cellpadding=8 cellspacing=3>
+         <table
+            class="table table-condensed table-bordered table-hover"
+            template-pagination="nopager"
+            ng-table>
             <thead>
                <tr>
                   <th
                      data-ng-repeat="column in columns"
-                     data-ng-show="column.visible">{{column.name}}</th>
+                     data-ng-show="column.visible">{{column.shortname}}</th>
                </tr>
             </thead>
             <tr
