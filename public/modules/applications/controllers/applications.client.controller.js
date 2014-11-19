@@ -85,48 +85,6 @@
 
          $scope.countries = ApplicationConfiguration.countries;
 
-         // Create new Application
-         $scope.create = function() {
-            // Create new Application object
-
-            var PROPS_TO_COPY = [
-               'personal_info.name.first',
-               'personal_info.name.middle',
-               'personal_info.name.last',
-               'personal_info.nation_of_citizenship',
-               'personal_info.UFID',
-               'education_and_activities.self_reported_GPA',
-               'education_and_activities.test_scores.FE',
-               'education_and_activities.test_scores.GMAT',
-               'education_and_activities.test_scores.GRE',
-               'education_and_activities.test_scores.IELTS',
-               'education_and_activities.test_scores.MELAB',
-               'education_and_activities.test_scores.TOEFL',
-               'education_and_activities.test_scores.TSE',
-            ];
-            
-            var obj = {};
-            var i;
-            var prop;
-
-            for (i = 0; i < PROPS_TO_COPY.length; i++) {
-               prop = PROPS_TO_COPY[i];
-               setprop(obj, prop, getprop(this,prop));
-            }
-
-            var application = new Applications (obj);
-
-            // Redirect after save
-            application.$save(function(response) {
-               $location.path('applications/' + response._id);
-
-               // Clear form fields
-               $scope.name = '';
-            }, function(errorResponse) {
-               $scope.error = errorResponse.data.message;
-            });
-         };
-
          // Remove existing Application
          $scope.remove = function( application ) {
             if ( application ) { application.$remove();
