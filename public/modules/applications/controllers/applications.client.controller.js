@@ -11,7 +11,10 @@
          function columnSpecShorthand() {
             var name, shortname, producer;
             var VISIBLE_BY_DEFAULT = [
-               'Name'
+               'Name',
+               'Active Veteran',
+               'Applied Before',
+               'Self-reported GPA'
             ];
             if (arguments.length === 2) {
                name = shortname = arguments[0];
@@ -50,6 +53,26 @@
                   return this.personal_info.name.last;
                }
             ),
+            columnSpecShorthand(
+               'Active Veteran',
+               function() {
+                  return this.personal_info.veteran_status.active_veteran ? 'Y' : 'N';
+               }
+            ),
+            columnSpecShorthand(
+               'Applied Before',
+               function() {
+                  return this.personal_info.previous_application ? 'Y' : 'N';
+               }
+            ),
+            columnSpecShorthand(
+               'Self-reported GPA',
+               'GPA',
+               function() {
+                  return this.education_and_activities.self_reported_GPA;
+               }
+            ),
+
          ];
 
          $scope.getColumnValueForApplication = function(column, application) {
