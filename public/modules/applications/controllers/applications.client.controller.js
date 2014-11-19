@@ -69,7 +69,7 @@
                'Self-reported GPA',
                'GPA',
                function() {
-                  return this.education_and_activities.self_reported_GPA.GPA;
+                  return this.education_and_activities.self_reported_gpa.GPA;
                }
             ),
 
