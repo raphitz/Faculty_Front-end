@@ -7,7 +7,8 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-				'public/lib/ng-table/ng-table.min.css'
+				'public/lib/ng-table/ng-table.min.css',
+            'public/lib/angular-sticky-table-header/dist/angular-sticky-table-header.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
@@ -22,6 +23,9 @@ module.exports = {
 				'public/lib/pdfmake/build/pdfmake.min.js',
 				'public/lib/pdfmake/build/vfs_fonts.js',
 				'public/lib/ng-table/ng-table.min.js',
+				'public/lib/lodash/dist/lodash.min.js',
+            'public/lib/angular-sticky-table-header/dist/angular-sticky-table-header.js',
+            'public/lib/watch-dom/dist/watch-dom.js',
 				'public/dist/browserify.min.js'
 			]
 		},

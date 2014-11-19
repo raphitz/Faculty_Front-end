@@ -35,7 +35,7 @@
             columnSpecShorthand(
                'Name',
                function() {
-                  return this.personal_info.name.first + " " + this.personal_info.name.last;
+                  return this.personal_info.name.first + ' ' + this.personal_info.name.last;
                }
             ),
             columnSpecShorthand(

@@ -1,4 +1,4 @@
 'use strict';
 
 // Use applicaion configuration module to register a new module
-ApplicationConfiguration.registerModule('applications', ['ngTable']);
+ApplicationConfiguration.registerModule('applications', ['ngTable', 'turn/stickyTableHeader']);

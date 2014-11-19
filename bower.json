@@ -16,6 +16,7 @@
     "angular-ui-router": "~0.2.10",
     "nsPopover": "~0.5.8",
     "pdfmake": "bpampuch/pdfmake#>=0.1.10",
-    "ng-table": "~0.3.3"
+    "ng-table": "~0.3.3",
+    "angular-sticky-table-header": "https://github.com/philip-peterson/angular-sticky-table-header.git#0.2.14"
   }
 }
