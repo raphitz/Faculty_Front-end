@@ -195,8 +195,14 @@
 
       }
    ])
-   .controller('ModalInstanceCtrl', function ($scope, $modalInstance, application) {
+   .controller('ModalInstanceCtrl', function ($scope, $modalInstance, application, $window) {
       $scope.application = application;
+
+      $scope.comment = '';
+
+      $scope.postComment = function (text) {
+         $window.alert(text);
+      };
 
       $scope.close = function () {
          $modalInstance.dismiss('close');

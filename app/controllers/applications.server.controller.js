@@ -30,9 +30,34 @@ exports.create = function(req, res) {
 };
 
 /**
+ * Create a comment for an application
+ */
+exports.createComment = function(req, res) {
+	console.log("WOOOO");
+	var application = req.application ;
+
+	application = _.extend(application , req.body);
+
+	console.log(req.application);
+	//var comment = ["john", "hello there"];
+	//application.comments.push(comment);
+
+	//application.save(function(err) {
+	//	if (err) {
+	//		return res.status(400).send({
+	//			message: errorHandler.getErrorMessage(err)
+	//		});
+	//	} else {
+	//		res.jsonp(application);
+	//	}
+	//});
+};
+
+/**
  * Show the current Application
  */
 exports.read = function(req, res) {
+	console.log(req.application);
 	res.jsonp(req.application);
 };
 

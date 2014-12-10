@@ -7,8 +7,8 @@ angular.module('applications').factory('Applications', ['$resource',
          'applications/:applicationId',
          { applicationId: '@_id' },
          {
-            update: {
-               method: 'PUT'
+            createComment: {
+               method: 'POST'
             }
          }
       );
