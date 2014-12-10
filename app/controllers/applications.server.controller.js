@@ -33,12 +33,11 @@ exports.create = function(req, res) {
  * Create a comment for an application
  */
 exports.createComment = function(req, res) {
-	console.log("WOOOO");
-	var application = req.application ;
+	// var application = req.application ;
 
-	application = _.extend(application , req.body);
+	// application = _.extend(application , req.body);
 
-	console.log(req.application);
+	// console.log(req.application);
 	//var comment = ["john", "hello there"];
 	//application.comments.push(comment);
 

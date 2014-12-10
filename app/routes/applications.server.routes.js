@@ -6,13 +6,15 @@ module.exports = function(app) {
 
 	// Applications Routes
 	app.route('/applications')
-		.get(applications.list)
+		.get(users.requiresLogin, applications.list)
 		.post(users.requiresLogin, applications.create);
 
 	app.route('/applications/:applicationId')
-		.get(applications.read)
-		.put(users.requiresLogin, applications.hasAuthorization, applications.update)
-		.delete(users.requiresLogin, applications.hasAuthorization, applications.delete);
+		.get(users.requiresLogin, applications.read);
+
+	app.route('/applications/:applicationId/comments')
+      .post(users.requiresLogin, applications.hasAuthorization, applications.createComment);
+
 
 	// Finish by binding the Application middleware
 	app.param('applicationId', applications.applicationByID);
